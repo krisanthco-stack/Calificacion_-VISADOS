@@ -1,0 +1,40 @@
+C-VISADOS 3.2.0 — INSPECCIÓN, ANTIGÜEDAD Y CALIFICACIÓN
+
+INSPECCIÓN
+- Bloques de acceso más compactos.
+- Nuevo campo: Ancho desde L.C. en inspección (m).
+- Se conserva Ancho desde L.C. según plano (m).
+- Tipos de acceso disponibles:
+  * Calle pública
+  * Servidumbre de paso (Acceso excepcional)
+  * Servidumbre agrícola
+  * Acceso al predio (callejón de acceso)
+  * Otro
+- El nuevo dato desde L.C. se guarda en el expediente, pero NO altera por sí solo la regla existente de comparación de ancho total.
+
+TRÁMITES
+- La fecha visible se denomina Fecha de solicitud / ingreso.
+- La tabla muestra fecha y antigüedad en días hábiles.
+- 0 a 10 días hábiles: normal.
+- 11 a 14 días hábiles: naranja.
+- 15 días hábiles o más: rojo.
+- El día de solicitud/ingreso se toma como día 0; el conteo comienza al día siguiente.
+- Se excluyen sábados, domingos y los feriados de Costa Rica del artículo 148 del Código de Trabajo, incluyendo Jueves y Viernes Santos calculados por año.
+
+CALIFICACIÓN
+- Base actualizada usando: datos para reicio aprobacion o rechazo(1).xlsx
+- SHA-256 fuente: bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e
+- Se preservaron las 22 causales existentes y se agregaron las 2 que no existían como causales individuales:
+  * EXCEDE_10_PERMITIDO
+  * NCFM (la propia fuente indica información pendiente; no se inventó contenido)
+- Total del catálogo: 24 causales.
+- Los códigos del Excel se incorporan como códigos de origen/equivalentes para búsqueda.
+- Buscador mejorado: código principal, código equivalente, código Excel, descripción, categoría, fundamento y términos similares.
+- La búsqueda ignora guiones, espacios, puntos, guiones bajos, tildes y mayúsculas/minúsculas.
+- ACP-FCU / ACP_FCU / ACP FCU encuentran AP-FCU.
+- Se consideran como términos de búsqueda: Servidumbre de paso, Acceso excepcional, Acceso al predio (callejón de acceso) y Visado INVU.
+
+PROTEGIDO
+- No se modificaron los formatos oficiales de APROBACIÓN o RECHAZO.
+- No se modificaron los 32 requisitos de Precalificación.
+- EXT 2029 se conserva.

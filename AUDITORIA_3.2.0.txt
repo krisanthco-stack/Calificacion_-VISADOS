@@ -1,0 +1,96 @@
+C-VISADOS 3.2.0 — AUDITORÍA DE CAMBIOS Y REGRESIÓN
+
+Fuente Excel de Calificación: datos para reicio aprobacion o rechazo(1).xlsx
+SHA-256 Excel: bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e
+
+RESULTADOS ESTÁTICOS / UNITARIOS
+- 49/49 controles correctos.
+- Unit test: {"ok":true,"searchACP":1200,"searchINVU":1100,"businessDays":24}
+
+CRITERIOS IMPLEMENTADOS
+- Inspección compacta y nuevo campo de ancho desde L.C. en inspección.
+- Tipos: Calle pública; Servidumbre de paso (Acceso excepcional); Servidumbre agrícola; Acceso al predio (callejón de acceso); Otro.
+- Antigüedad: 11-14 días hábiles naranja; 15+ rojo; lunes-viernes excluyendo feriados CR.
+- Catálogo: 24 causales; 22 existentes conservadas + EXCEDE_10_PERMITIDO + NCFM.
+- Búsqueda por similitud y códigos equivalentes/origen Excel.
+- Machotes oficiales y 32 requisitos protegidos.
+
+CONTROLES
+[OK] Versión app 3.2.0
+[OK] Versión archivo 3.2.0
+[OK] Cache 3.2.0
+[OK] Catálogo 24 causales — 24
+[OK] EXCEDE_10_PERMITIDO presente
+[OK] NCFM presente
+[OK] ACP-FCU equivalente presente
+[OK] ACP_FCU código Excel buscable
+[OK] Visado INVU alias
+[OK] CNP_SP_IP origen
+[OK] Fecha solicitud label
+[OK] Tabla antigüedad
+[OK] Cálculo feriados CR
+[OK] Jueves/Viernes Santos dinámicos
+[OK] Umbral naranja >10
+[OK] Umbral rojo >=15
+[OK] Campo LC inspección
+[OK] Tipo acceso Servidumbre de paso (Acceso excepcional)
+[OK] Tipo acceso Servidumbre agrícola
+[OK] Tipo acceso Acceso al predio (callejón de acceso)
+[OK] Buscador inteligente
+[OK] Equivalentes visibles
+[OK] 32 requisitos
+[OK] Protegido intacto assets/templates/APROBACION_BASE_2029.png
+[OK] Protegido intacto assets/templates/HEADER_2029.png
+[OK] Protegido intacto assets/templates/BUSINESS_CARD_2029.png
+[OK] Protegido intacto data/requisitos.json
+[OK] Aprobación oficial intacta en app
+[OK] Rechazo oficial intacto en app
+[OK] EXT 2029 intacto
+[OK] Node --check js/data.js
+[OK] Node --check js/app.js
+[OK] Node --check sw.js
+[OK] Raíz/recurso index.html
+[OK] Raíz/recurso manifest.webmanifest
+[OK] Raíz/recurso sw.js
+[OK] Raíz/recurso .nojekyll
+[OK] Raíz/recurso css/app.css
+[OK] Raíz/recurso js/app.js
+[OK] Raíz/recurso js/data.js
+[OK] Raíz/recurso data/requisitos.json
+[OK] Raíz/recurso data/catalogo_rechazos.json
+[OK] Raíz/recurso assets/icon-192.png
+[OK] Raíz/recurso assets/icon-512.png
+[OK] Sin *.bat
+[OK] Sin *.ps1
+[OK] Sin *.exe
+[OK] Sin *.msi
+[OK] Pruebas unitarias búsqueda/feriados — {"ok":true,"searchACP":1200,"searchINVU":1100,"businessDays":24}
+
+PRUEBA FUNCIONAL EN CHROMIUM (HTML INYECTADO EN about:blank POR POLÍTICA DEL ENTORNO)
+[OK] Arranque de la aplicación 3.2.0 sin errores JavaScript.
+[OK] Navegación real entre Trámites, Precalificación, Inspección, Calificación y Resoluciones.
+[OK] Creación de expediente mediante los controles de la interfaz.
+[OK] Trámite con 24 días hábiles se marca rojo.
+[OK] Límite 10 días hábiles permanece normal.
+[OK] Desde 11 días hábiles se marca naranja.
+[OK] Desde 15 días hábiles se marca rojo.
+[OK] Inspección guarda Servidumbre de paso (Acceso excepcional).
+[OK] Inspección guarda Ancho desde L.C. según plano y Ancho desde L.C. en inspección.
+[OK] La comparación existente de ancho total continúa operativa y no fue sustituida por una regla nueva desde L.C.
+[OK] Búsqueda ACP-FCU encuentra AP-FCU.
+[OK] Búsqueda ACP FC (parcial/similar) encuentra AP-FCU.
+[OK] Búsqueda visado invu encuentra causales INVU.
+[OK] Búsqueda servidumbre de paso encuentra causales relacionadas.
+[OK] Catálogo cargado con 24 causales.
+[OK] EXCEDE_10_PERMITIDO y NCFM cargan como nuevas causales.
+[OK] Precalificación mantiene funcionamiento y puede llegar a CUMPLE.
+[OK] Resolución APROBADA sigue usando APROBACION_BASE_2029.png.
+[OK] Al seleccionar EXCEDE_10_PERMITIDO la decisión pasa a RECHAZADO y usa HEADER_2029.png.
+[OK] Simulación de beforeinstallprompt: botón cambia a Instalar C-VISADOS y ejecuta prompt().
+[OK] Errores JavaScript durante la prueba: 0.
+
+PRUEBA DE RECURSOS HTTP
+[OK] 14/14 recursos esenciales respondieron HTTP 200: index, manifest, Service Worker, CSS, JS, requisitos, catálogo, iconos y tres recursos de machotes.
+
+LIMITACIÓN DEL ENTORNO
+Chromium administrado bloquea directamente las URL localhost con el mensaje de política organizacional. Por ello la prueba funcional se realizó cargando el mismo HTML/CSS/JS dentro de Chromium mediante DevTools, sin modificar los archivos del repositorio. El Service Worker se validó por sintaxis, rutas, estructura de caché y disponibilidad HTTP de todos sus recursos; no se declara una activación real del Service Worker en localhost que el entorno impide abrir.

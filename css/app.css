@@ -95,13 +95,13 @@ tbody tr:last-child td{border-bottom:0}.click{cursor:pointer}.click:hover td{bac
 .pre-failures{font-size:10.5px;line-height:1.3}.pre-failures .failure{padding:5px 0;border-bottom:1px solid #edf1f4}.pre-failures .failure:last-child{border-bottom:0}
 
 /* Inspección */
-.access-list{display:grid;gap:7px}
-.access-card{padding:8px 9px;border:1px solid var(--border);border-left:3px solid #9eb6c8;border-radius:8px;background:#fff;box-shadow:var(--shadow)}
-.access-head{min-height:28px;margin-bottom:6px;display:flex;align-items:center;gap:7px}.access-head b{color:var(--nav-deep);font-size:11.5px}
-.access-head .right-actions{margin-left:auto;display:flex;gap:4px}
-.access-grid{display:grid;grid-template-columns:repeat(4,minmax(135px,1fr));gap:6px}.access-grid .field{min-width:0}.access-grid textarea{min-height:52px}
+.access-list{display:grid;gap:5px}
+.access-card{padding:6px 7px;border:1px solid var(--border);border-left:3px solid #9eb6c8;border-radius:7px;background:#fff;box-shadow:0 1px 6px rgba(13,41,66,.035)}
+.access-head{min-height:24px;margin-bottom:4px;display:flex;align-items:center;gap:5px}.access-head b{color:var(--nav-deep);font-size:11px}
+.access-head .right-actions{margin-left:auto;display:flex;gap:3px}
+.access-grid{display:grid;grid-template-columns:repeat(6,minmax(105px,1fr));gap:4px}.access-grid .field{min-width:0}.access-grid .field label{font-size:9px;margin-bottom:2px}.access-grid input,.access-grid select{min-height:30px;padding:4px 6px;font-size:10.3px}.access-grid textarea{min-height:38px;padding:4px 6px;font-size:10.3px}.access-type{grid-column:span 2}.access-observation{grid-column:span 2}
 .access-lc{display:none}.show-lc .access-lc{display:block}
-.access-result{margin-top:6px;padding:5px 7px;border-radius:6px;font-size:9.8px;font-weight:800}
+.access-result{margin-top:4px;padding:4px 6px;border-radius:6px;font-size:9.2px;font-weight:800}
 .access-result.green{background:#eaf7f1;color:#175f4c}.access-result.red{background:#fff0ee;color:#8d251d}.access-result.amber{background:#fff7df;color:#7b5200}
 
 /* Calificación */
@@ -134,9 +134,20 @@ tbody tr:last-child td{border-bottom:0}.click{cursor:pointer}.click:hover td{bac
 .req{display:grid;grid-template-columns:24px minmax(0,1fr);gap:7px;padding:6px 0;border-bottom:1px solid #edf1f4}.req input{width:16px;height:16px;min-height:16px}
 .empty{padding:14px;text-align:center;color:var(--muted);font-size:10.5px}
 
+
+/* Antigüedad de trámites: lunes-viernes menos feriados oficiales de Costa Rica */
+tr.aging-orange td{background:#fff8e7}
+tr.aging-orange:hover td{background:#fff3d3}
+tr.aging-red td{background:#fff0ee}
+tr.aging-red:hover td{background:#fde3df}
+.age-pill{margin-top:3px}
+.age-summary{font-weight:800}
+.age-summary.amber{background:#fff2cc!important;color:#805600!important}
+.age-summary.red{background:#fde9e7!important;color:#9e271e!important}
+
 /* Responsive */
 @media(max-width:1250px){#page-cierre>.grid2{grid-template-columns:1fr}#page-cierre>.grid2>div:first-child{position:static}}
-@media(max-width:1120px){.brand{min-width:190px}.condition-grid{grid-template-columns:repeat(2,minmax(160px,1fr))}.access-grid{grid-template-columns:repeat(2,minmax(140px,1fr))}.cal-top{grid-template-columns:1fr 1fr}.cal-top .cal-action{grid-column:1/-1}}
+@media(max-width:1120px){.brand{min-width:190px}.condition-grid{grid-template-columns:repeat(2,minmax(160px,1fr))}.access-grid{grid-template-columns:repeat(3,minmax(125px,1fr))}.cal-top{grid-template-columns:1fr 1fr}.cal-top .cal-action{grid-column:1/-1}}
 @media(max-width:1000px){.formgrid,.grid2{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:1fr 1fr}}
 @media(max-width:780px){.top{position:relative;display:block;padding:8px 10px}.brand{margin-bottom:7px}.nav{padding-bottom:2px}.head{position:relative;top:0;min-height:50px;padding:7px 10px}.head>.small{display:none}.page{padding:9px 10px 22px}.formgrid,.grid2,.condition-grid,.access-grid,.cal-top{grid-template-columns:1fr}.install{margin-left:0!important}.criterion{grid-template-columns:22px minmax(95px,125px) minmax(0,1fr)}}
 @media(max-width:520px){.kpis{grid-template-columns:1fr}.nav button{font-size:10.5px}.card{padding:8px}.preview{padding:5px}.preview:before{margin:-5px -5px 5px}.preview iframe{height:790px}}

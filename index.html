@@ -29,11 +29,11 @@
 <div class="card"><div class="toolbar"><div><h3 style="margin:0">Importar expedientes</h3><div class="small">JSON, CSV y XLSX cargan expedientes. PDF de texto intenta detectar trámite y datos básicos; si no puede, no inventa información.</div></div><div class="right"><button class="btn primary" onclick="fileJson.click()">JSON</button> <button class="btn" onclick="fileExcel.click()">Excel / CSV</button> <button class="btn" onclick="filePdf.click()">PDF</button></div></div><input id="fileJson" type="file" accept=".json" hidden multiple><input id="fileExcel" type="file" accept=".xlsx,.csv" hidden multiple><input id="filePdf" type="file" accept=".pdf" hidden multiple><div id="importMsg" class="small" style="margin-top:8px">Listo para importar.</div></div>
 <div class="card"><div class="toolbar"><div class="field"><label>Buscar</label><input id="fSearch" placeholder="Trámite, solicitante, folio..."></div><div class="field"><label>Distrito</label><select id="fDistrict"><option value="">Todos</option></select></div><div class="field"><label>Lugar</label><input id="fPlace"></div><button class="btn" onclick="clearFilters()">Limpiar</button><button class="btn primary" onclick="toggleNew()">+ Nuevo trámite</button><button class="btn" onclick="exportAll()">Exportar respaldo JSON</button></div></div>
 <div id="newCard" class="card" style="display:none"><h3>Registro de expediente</h3><div class="formgrid">
-<div class="field"><label>N.° trámite</label><input id="nTramite" placeholder="VMSDC 2026-xxxxx"></div><div class="field"><label>Fecha presentación</label><input id="nFecha" type="date"></div><div class="field"><label>Solicitante</label><input id="nSolicitante"></div><div class="field"><label>Correo</label><input id="nCorreo" type="email"></div>
+<div class="field"><label>N.° trámite</label><input id="nTramite" placeholder="VMSDC 2026-xxxxx"></div><div class="field"><label>Fecha de solicitud / ingreso</label><input id="nFecha" type="date"></div><div class="field"><label>Solicitante</label><input id="nSolicitante"></div><div class="field"><label>Correo</label><input id="nCorreo" type="email"></div>
 <div class="field"><label>Folio real</label><input id="nFolio"></div><div class="field"><label>Plano</label><input id="nPlano"></div><div class="field"><label>N.° presentación / asiento</label><input id="nPresent"></div><div class="field"><label>Tomo</label><input id="nTomo"></div>
 <div class="field"><label>Asiento</label><input id="nAsiento"></div><div class="field"><label>Área</label><input id="nArea" placeholder="1952.00 m²"></div><div class="field"><label>Distrito</label><input id="nDistrito"></div><div class="field"><label>Lugar</label><input id="nLugar"></div>
 <div class="field"><label>Tipo de ingreso</label><select id="nIngreso"><option>Nuevo ingreso</option><option>Reingreso</option><option>Resello</option></select></div><div class="field"><label>Modalidad</label><select id="nModalidad"><option value="SIMPLE">Fraccionamiento simple</option><option value="URBANISTICO">Fines urbanísticos</option><option value="ACCESO_EXCEPCIONAL">Acceso excepcional residencial</option><option value="AGROPECUARIO">Agrícola / pecuario / forestal / mixto</option></select></div><div class="field"><label>Responsable</label><input id="nResponsable" value="Analista"></div></div><div class="toolbar" style="margin-top:9px"><button class="btn primary" onclick="saveNew()">Guardar</button><button class="btn" onclick="toggleNew()">Cancelar</button></div></div>
-<div class="card"><div class="tablewrap"><table><thead><tr><th>Trámite</th><th>Folio / Plano</th><th>Presentación</th><th>Solicitante</th><th>Distrito / Lugar</th><th>Estado</th><th>Resultado</th><th></th></tr></thead><tbody id="expBody"></tbody></table></div></div>
+<div class="card"><div class="tablewrap"><table><thead><tr><th>Trámite</th><th>Fecha solicitud / antigüedad</th><th>Folio / Plano</th><th>Presentación</th><th>Solicitante</th><th>Distrito / Lugar</th><th>Estado</th><th>Resultado</th><th></th></tr></thead><tbody id="expBody"></tbody></table></div></div>
 </section>
 
 
@@ -72,7 +72,7 @@
       <span id="inspectionSummary" class="pill amber">PENDIENTE</span>
       <div class="right">
         <button class="btn primary" onclick="addAccess()">+ Agregar acceso</button>
-        <button class="btn" id="toggleLCBtn" onclick="toggleLCView()">Ver ancho desde L.C. según plano</button>
+        <button class="btn" id="toggleLCBtn" onclick="toggleLCView()">Ver datos desde L.C.</button>
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@
   </div>
   <div class="grid2">
     <div>
-      <div class="card compact-card"><div class="compact-toolbar"><div class="field"><label>Buscar causal</label><input id="defSearch" placeholder="Código o descripción"></div><div class="field"><label>Categoría</label><select id="defCat"><option value="">Todas</option></select></div></div></div>
+      <div class="card compact-card"><div class="compact-toolbar"><div class="field"><label>Buscar causal</label><input id="defSearch" placeholder="Código, equivalente, descripción o término similar"></div><div class="field"><label>Categoría</label><select id="defCat"><option value="">Todas</option></select></div></div></div>
       <div class="card compact-card"><div id="catalog" class="catalog"></div></div>
     </div>
     <div>
