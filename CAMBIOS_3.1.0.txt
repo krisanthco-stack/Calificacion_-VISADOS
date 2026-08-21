@@ -1,0 +1,23 @@
+C-VISADOS 3.1.0 — REDISEÑO UI/UX
+
+Se mejoró exclusivamente la presentación visual:
+- navegación y cabecera compactas;
+- jerarquía visual del módulo activo;
+- formularios, tablas, botones y KPI más compactos;
+- precalificación y acordeones más legibles;
+- inspección con accesos más densos;
+- calificación con mejor lectura de catálogo y códigos largos;
+- Resoluciones dedica mayor espacio al oficio oficial;
+- responsive optimizado.
+
+NO se modificó:
+- index.html funcional;
+- reglas, cálculos o decisiones;
+- almacenamiento, importación o exportación;
+- requisitos ni catálogo;
+- lógica de aprobación/rechazo;
+- machotes oficiales;
+- EXT 2029.
+
+La vista de Resoluciones continúa usando los formatos oficiales ya definidos
+por C-VISADOS. No se incorporó el oficio ficticio del prototipo HTML UI/UX.

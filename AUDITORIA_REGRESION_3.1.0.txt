@@ -1,0 +1,96 @@
+C-VISADOS 3.1.0 — AUDITORÍA DE REGRESIÓN UI/UX
+
+CRITERIO DE SEGURIDAD
+- El HTML funcional permanece byte por byte igual a 3.0.0.
+- js/data.js permanece byte por byte igual a 3.0.0.
+- app.js conserva la misma lógica; solo cambia APP_VERSION.
+- Los requisitos, catálogo y recursos de machotes están protegidos por SHA-256.
+- El rediseño está aislado en css/app.css.
+
+OFICIOS
+- APROBACIÓN conserva APROBACION_BASE_2029.png.
+- RECHAZO conserva HEADER_2029.png y BUSINESS_CARD_2029.png.
+- reportFrame continúa cargando reportHtml(e).
+- No se incorporó el oficio simulado del prototipo UI/UX.
+
+RESULTADO: 76/76 controles correctos
+
+[OK] index.html byte por byte intacto
+[OK] js/data.js byte por byte intacto
+[OK] app.js misma lógica salvo versión
+[OK] APP_VERSION 3.1.0
+[OK] Intacto assets/templates/APROBACION_BASE_2029.png
+[OK] Intacto assets/templates/HEADER_2029.png
+[OK] Intacto assets/templates/BUSINESS_CARD_2029.png
+[OK] Intacto data/requisitos.json
+[OK] Intacto data/catalogo_rechazos.json
+[OK] Aprobación usa machote definido
+[OK] Rechazo usa encabezado definido
+[OK] Rechazo usa tarjeta definida
+[OK] Resoluciones sigue usando reportHtml
+[OK] EXT 2029 conservada
+[OK] Módulo tramites
+[OK] Módulo pre
+[OK] Módulo inspection
+[OK] Módulo calificacion
+[OK] Módulo cierre
+[OK] Control preExp
+[OK] Control inspectionExp
+[OK] Control motorExp
+[OK] Control closeExp
+[OK] Control reportFrame
+[OK] Control installBtn
+[OK] 32 requisitos oficiales — 32
+[OK] 22 causales oficiales — 22
+[OK] CSS llaves balanceadas
+[OK] Código largo no se sobrepone
+[OK] Vista oficial priorizada
+[OK] Responsive escritorio/móvil
+[OK] Navegación clicable
+[OK] start_url ./
+[OK] scope ./
+[OK] display standalone
+[OK] icono 192 declarado
+[OK] icono 512 declarado
+[OK] caché 3.1.0
+[OK] .nojekyll
+[OK] Lista CORE encontrada
+[OK] SW recurso index.html
+[OK] SW recurso css/app.css
+[OK] SW recurso js/data.js
+[OK] SW recurso js/app.js
+[OK] SW recurso manifest.webmanifest
+[OK] SW recurso assets/icon-192.png
+[OK] SW recurso assets/icon-512.png
+[OK] SW recurso assets/c-visados-app.png
+[OK] SW recurso assets/escudo.png
+[OK] SW recurso assets/sarapiqui.png
+[OK] SW recurso assets/templates/APROBACION_BASE_2029.png
+[OK] SW recurso assets/templates/HEADER_2029.png
+[OK] SW recurso assets/templates/BUSINESS_CARD_2029.png
+[OK] SW recurso data/requisitos.json
+[OK] SW recurso data/catalogo_rechazos.json
+[OK] Sintaxis js/data.js
+[OK] Sintaxis js/app.js
+[OK] Sintaxis sw.js
+[OK] Sin BAT
+[OK] Sin PowerShell
+[OK] Sin EXE
+[OK] Sin MSI
+[OK] Sin archivos L-26
+[OK] ZIP íntegro
+[OK] ZIP contiene index.html
+[OK] ZIP contiene css/app.css
+[OK] ZIP contiene js/app.js
+[OK] ZIP contiene js/data.js
+[OK] ZIP contiene sw.js
+[OK] ZIP contiene manifest.webmanifest
+[OK] ZIP contiene VERSION.txt
+[OK] ZIP contiene AUDITORIA_REGRESION_3.1.0.txt
+[OK] ZIP contiene CAMBIOS_3.1.0.txt
+[OK] ZIP contiene assets/templates/APROBACION_BASE_2029.png
+[OK] ZIP contiene assets/templates/HEADER_2029.png
+[OK] ZIP contiene assets/templates/BUSINESS_CARD_2029.png
+
+QA VISUAL
+Chromium headless del entorno no completa de forma fiable la navegación localhost; no se declara una prueba visual interactiva no completada. La regresión funcional se protege manteniendo intactos el HTML y la lógica.

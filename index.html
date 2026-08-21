@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#15324a">
+<meta name="application-name" content="C-VISADOS">
+<meta name="description" content="Control municipal de expedientes de visado de la Municipalidad de Sarapiquí">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./assets/icon-192.png">
+<link rel="apple-touch-icon" href="./assets/icon-192.png">
+<link rel="stylesheet" href="./css/app.css">
+<title>C-VISADOS</title>
+</head>
+<body>
+<div class="top"><div class="brand"><div class="brandmark">CV</div><div><strong>C-VISADOS</strong><small>Municipalidad de Sarapiquí</small></div></div><div class="nav">
+<button class="active" data-page="tramites"><span class="n">1</span>Trámites</button>
+<button data-page="pre"><span class="n">2</span>Precalificación</button>
+<button data-page="inspection"><span class="n">3</span>Inspección</button>
+<button data-page="calificacion"><span class="n">4</span>Calificación</button>
+<button data-page="cierre"><span class="n">5</span>Resoluciones</button>
+<button id="installBtn" class="install">Instalar / verificar</button>
+</div></div>
+<div class="head"><div><h1 id="pageTitle">Módulo de Trámites</h1><small>Registro → precalificación → inspección → calificación → resolución</small></div><div class="small"><b>Catastro y Topografía</b> · Ext. 2029<br>Datos guardados localmente en este equipo</div></div>
+
+<section class="page active" id="page-tramites">
+<div class="notice"><b>Normalización automática:</b> no diferencia mayúsculas/minúsculas ni tildes. Horquetas, Las Horquetas, HORQTS y Horqueta se consolidan como <b>Horquetas</b>; Palmitas, Las Palmitas, PALMIATAS y palmita como <b>Las Palmitas</b>.</div>
+<div id="kpis" class="kpis"></div>
+<div class="card"><div class="toolbar"><div><h3 style="margin:0">Importar expedientes</h3><div class="small">JSON, CSV y XLSX cargan expedientes. PDF de texto intenta detectar trámite y datos básicos; si no puede, no inventa información.</div></div><div class="right"><button class="btn primary" onclick="fileJson.click()">JSON</button> <button class="btn" onclick="fileExcel.click()">Excel / CSV</button> <button class="btn" onclick="filePdf.click()">PDF</button></div></div><input id="fileJson" type="file" accept=".json" hidden multiple><input id="fileExcel" type="file" accept=".xlsx,.csv" hidden multiple><input id="filePdf" type="file" accept=".pdf" hidden multiple><div id="importMsg" class="small" style="margin-top:8px">Listo para importar.</div></div>
+<div class="card"><div class="toolbar"><div class="field"><label>Buscar</label><input id="fSearch" placeholder="Trámite, solicitante, folio..."></div><div class="field"><label>Distrito</label><select id="fDistrict"><option value="">Todos</option></select></div><div class="field"><label>Lugar</label><input id="fPlace"></div><button class="btn" onclick="clearFilters()">Limpiar</button><button class="btn primary" onclick="toggleNew()">+ Nuevo trámite</button><button class="btn" onclick="exportAll()">Exportar respaldo JSON</button></div></div>
+<div id="newCard" class="card" style="display:none"><h3>Registro de expediente</h3><div class="formgrid">
+<div class="field"><label>N.° trámite</label><input id="nTramite" placeholder="VMSDC 2026-xxxxx"></div><div class="field"><label>Fecha presentación</label><input id="nFecha" type="date"></div><div class="field"><label>Solicitante</label><input id="nSolicitante"></div><div class="field"><label>Correo</label><input id="nCorreo" type="email"></div>
+<div class="field"><label>Folio real</label><input id="nFolio"></div><div class="field"><label>Plano</label><input id="nPlano"></div><div class="field"><label>N.° presentación / asiento</label><input id="nPresent"></div><div class="field"><label>Tomo</label><input id="nTomo"></div>
+<div class="field"><label>Asiento</label><input id="nAsiento"></div><div class="field"><label>Área</label><input id="nArea" placeholder="1952.00 m²"></div><div class="field"><label>Distrito</label><input id="nDistrito"></div><div class="field"><label>Lugar</label><input id="nLugar"></div>
+<div class="field"><label>Tipo de ingreso</label><select id="nIngreso"><option>Nuevo ingreso</option><option>Reingreso</option><option>Resello</option></select></div><div class="field"><label>Modalidad</label><select id="nModalidad"><option value="SIMPLE">Fraccionamiento simple</option><option value="URBANISTICO">Fines urbanísticos</option><option value="ACCESO_EXCEPCIONAL">Acceso excepcional residencial</option><option value="AGROPECUARIO">Agrícola / pecuario / forestal / mixto</option></select></div><div class="field"><label>Responsable</label><input id="nResponsable" value="Analista"></div></div><div class="toolbar" style="margin-top:9px"><button class="btn primary" onclick="saveNew()">Guardar</button><button class="btn" onclick="toggleNew()">Cancelar</button></div></div>
+<div class="card"><div class="tablewrap"><table><thead><tr><th>Trámite</th><th>Folio / Plano</th><th>Presentación</th><th>Solicitante</th><th>Distrito / Lugar</th><th>Estado</th><th>Resultado</th><th></th></tr></thead><tbody id="expBody"></tbody></table></div></div>
+</section>
+
+
+<section class="page" id="page-pre">
+  <div class="card compact-card">
+    <div class="compact-toolbar">
+      <div class="field"><label>Expediente</label><select id="preExp"></select></div>
+      <div class="field"><label>Tipo de ingreso</label><select id="preIngreso"><option>Nuevo ingreso</option><option>Reingreso</option><option>Resello</option></select></div>
+      <div class="field"><label>Modalidad</label><select id="preModalidad"><option value="SIMPLE">Fraccionamiento simple</option><option value="URBANISTICO">Fines urbanísticos</option><option value="ACCESO_EXCEPCIONAL">Acceso excepcional residencial</option><option value="AGROPECUARIO">Agrícola / pecuario / forestal / mixto</option></select></div>
+      <span id="preSummary" class="right pill amber">Pendiente</span>
+    </div>
+  </div>
+  <details class="accordion">
+    <summary>Condiciones que activan requisitos específicos</summary>
+    <div class="accordion-body condition-grid">
+      <label><input type="checkbox" id="condAgua"> Requiere disponibilidad de agua</label>
+      <label><input type="checkbox" id="condMopt"> Frente a Red Vial Nacional</label>
+      <label><input type="checkbox" id="condAreas"> Hay áreas públicas a ceder</label>
+      <label><input type="checkbox" id="condBosque"> Cobertura boscosa</label>
+      <label><input type="checkbox" id="condSinServ"> Sin servicios indispensables</label>
+      <label><input type="checkbox" id="condGrafica"> Corrección gráfica</label>
+      <label><input type="checkbox" id="condResello"> Resello &gt;1 año / otra presentación</label>
+    </div>
+  </details>
+  <div id="reqList"></div>
+  <div class="card compact-card">
+    <div class="compact-toolbar"><h3 style="margin:0">Incumplimientos para Calificación</h3><span id="preFailureCount" class="right pill green">0</span></div>
+    <div id="preFailures" class="pre-failures small">Sin incumplimientos obligatorios.</div>
+  </div>
+</section>
+
+<section class="page" id="page-inspection">
+  <div class="card compact-card">
+    <div class="compact-toolbar">
+      <div class="field"><label>Expediente</label><select id="inspectionExp"></select></div>
+      <span id="inspectionSummary" class="pill amber">PENDIENTE</span>
+      <div class="right">
+        <button class="btn primary" onclick="addAccess()">+ Agregar acceso</button>
+        <button class="btn" id="toggleLCBtn" onclick="toggleLCView()">Ver ancho desde L.C. según plano</button>
+      </div>
+    </div>
+  </div>
+  <div id="accessList" class="access-list"></div>
+  <div class="card compact-card">
+    <div class="field"><label>Observaciones de inspección</label><textarea id="inspectionObs" placeholder="Observaciones de campo"></textarea></div>
+    <div class="compact-toolbar" style="margin-top:7px"><button class="btn primary" onclick="saveInspection()">Guardar inspección</button><span id="inspectionOverall" class="small"></span></div>
+  </div>
+</section>
+
+<section class="page" id="page-calificacion">
+  <div class="card compact-card">
+    <div class="cal-top">
+      <div class="field"><label>Expediente</label><select id="motorExp"></select></div>
+      <div class="field"><label>Encargado de Calificación</label><input id="calificador" placeholder="Nombre del encargado"></div>
+      <div class="cal-action"><button class="btn primary" onclick="toggleManualPanel()">+ Agregar detalle de rechazo</button></div>
+    </div>
+    <div class="flow-summary" id="flowSummary" style="margin-top:8px"></div>
+    <div id="decisionBox" class="statusbox amber">PENDIENTE</div>
+    <div id="manualPanel" class="manual-panel">
+      <div class="formgrid" style="grid-template-columns:repeat(3,minmax(170px,1fr))">
+        <div class="field"><label>Detalle / observación</label><textarea id="manualDetalle"></textarea></div>
+        <div class="field"><label>Motivación técnica</label><textarea id="manualMotivacion"></textarea></div>
+        <div class="field"><label>Fundamento jurídico</label><textarea id="manualFundamento"></textarea></div>
+      </div>
+      <div class="compact-toolbar" style="margin-top:6px"><button class="btn primary" onclick="addManualReject()">Guardar detalle</button><button class="btn" onclick="toggleManualPanel(false)">Cancelar</button></div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="card compact-card"><div class="compact-toolbar"><div class="field"><label>Buscar causal</label><input id="defSearch" placeholder="Código o descripción"></div><div class="field"><label>Categoría</label><select id="defCat"><option value="">Todas</option></select></div></div></div>
+      <div class="card compact-card"><div id="catalog" class="catalog"></div></div>
+    </div>
+    <div>
+      <div class="card compact-card"><h3>Incumplimientos heredados</h3><div id="inheritedRejects" class="inherited-list small">Sin incumplimientos.</div></div>
+      <div class="card compact-card"><h3>Detalles de rechazo agregados</h3><div id="manualRejectList" class="manual-list small">Ninguno.</div></div>
+      <div class="card compact-card"><h3>Detalle de la causal</h3><div id="defDetail" class="detail" style="min-height:150px">Seleccione una causal para consultar su detalle y fundamento.</div></div>
+      <div class="card compact-card"><div class="compact-toolbar"><h3 style="margin:0">Motivos seleccionados</h3><span id="selectedCount" class="right pill green">0</span></div><div id="selectedDefs" class="small">Sin causales seleccionadas.</div><button class="btn primary" style="margin-top:8px" onclick="saveQualification()">Guardar calificación</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-cierre"><div class="grid2"><div><div class="card"><div class="field"><label>Expediente</label><select id="closeExp"></select></div></div><div class="card"><h3>Datos variables del oficio</h3><div class="formgrid" style="grid-template-columns:repeat(3,minmax(120px,1fr))"><div class="field"><label>Fecha del oficio</label><input id="rFecha" type="date"></div><div class="field"><label>Tomo</label><input id="rTomo"></div><div class="field"><label>Asiento</label><input id="rAsiento"></div><div class="field"><label>Área</label><input id="rArea"></div><div class="field"><label>Folio real</label><input id="rFolio"></div><div class="field"><label>Distrito</label><input id="rDistrito"></div><div class="field"><label>Solicitante</label><input id="rSolicitante"></div><div class="field"><label>Funcionario / topógrafo</label><input id="rFuncionario" value="Kristian Anthony Castillo Oviedo"></div><div class="field"><label>Puesto</label><input id="rPuesto" value="Topógrafo · Departamento de Catastro y Topografía"></div></div><div class="toolbar" style="margin-top:9px"><button class="btn primary" onclick="saveReportFields()">Actualizar oficio</button><button class="btn success" id="finalBtn" onclick="finalizeCase()">Finalizar gestión</button><button class="btn danger" id="reopenBtn" onclick="reopenCase()">Reabrir</button></div></div><div class="card"><div class="toolbar"><h3 style="margin:0">Salida</h3><span id="closeStatus" class="right pill green"></span></div><div class="toolbar"><button class="btn primary" onclick="printReport()">Imprimir / Guardar PDF</button><button class="btn" onclick="downloadCase()">Descargar expediente JSON</button></div></div></div><div><div class="preview"><iframe id="reportFrame" title="Vista previa del oficio oficial"></iframe></div><div class="report-note">Vista previa basada en los machotes oficiales definidos para APROBACIÓN y RECHAZO. No se rediseña el oficio.</div></div></div></section>
+<script src="./js/data.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>

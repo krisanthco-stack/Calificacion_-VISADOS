@@ -1,0 +1,18 @@
+C-VISADOS 3.1.0 — PUBLICACIÓN E INSTALACIÓN
+
+Este repositorio corresponde exclusivamente a Control de Visados.
+
+1. Descomprima C_VISADOS_REPOSITORIO_3.1.0_UIUX.zip.
+2. Suba TODO el contenido a la raíz del repositorio GitHub.
+3. Settings > Pages:
+   Source: Deploy from a branch
+   Branch: main
+   Folder: / (root)
+4. Abra la URL HTTPS de GitHub Pages.
+5. Instale C-VISADOS desde el botón de la aplicación o desde Edge/Chrome.
+
+IMPORTANTE
+- No use file:// para instalar la PWA.
+- No contiene BAT, PowerShell, EXE ni MSI.
+- Conserva los datos locales de versiones anteriores.
+- Los formatos oficiales APROBADO y RECHAZADO no fueron rediseñados.
