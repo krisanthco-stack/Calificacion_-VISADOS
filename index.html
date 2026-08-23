@@ -1,122 +1,202 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#15324a">
-<meta name="application-name" content="C-VISADOS">
-<meta name="description" content="Control municipal de expedientes de visado de la Municipalidad de Sarapiquí">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="192x192" href="./assets/icon-192.png">
-<link rel="apple-touch-icon" href="./assets/icon-192.png">
-<link rel="stylesheet" href="./css/app.css">
-<title>C-VISADOS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123b6d">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Fiscalizaciones V01">
+  <meta name="application-name" content="Fiscalización V01 Mejorada">
+  <meta name="description" content="Fiscalización municipal de bienes inmuebles. V01 independiente.">
+  <title>Fiscalización V01 Mejorada</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="top"><div class="brand"><div class="brandmark">CV</div><div><strong>C-VISADOS</strong><small>Municipalidad de Sarapiquí</small></div></div><div class="nav">
-<button class="active" data-page="tramites"><span class="n">1</span>Trámites</button>
-<button data-page="pre"><span class="n">2</span>Precalificación</button>
-<button data-page="inspection"><span class="n">3</span>Inspección</button>
-<button data-page="calificacion"><span class="n">4</span>Calificación</button>
-<button data-page="cierre"><span class="n">5</span>Resoluciones</button>
-<button id="installBtn" class="install">Instalar / verificar</button>
-</div></div>
-<div class="head"><div><h1 id="pageTitle">Módulo de Trámites</h1><small>Registro → precalificación → inspección → calificación → resolución</small></div><div class="small"><b>Catastro y Topografía</b> · Ext. 2029<br>Datos guardados localmente en este equipo</div></div>
-
-<section class="page active" id="page-tramites">
-<div class="notice"><b>Normalización automática:</b> no diferencia mayúsculas/minúsculas ni tildes. Horquetas, Las Horquetas, HORQTS y Horqueta se consolidan como <b>Horquetas</b>; Palmitas, Las Palmitas, PALMIATAS y palmita como <b>Las Palmitas</b>.</div>
-<div id="kpis" class="kpis"></div>
-<div class="card"><div class="toolbar"><div><h3 style="margin:0">Importar expedientes</h3><div class="small">Excel/CSV, JSON y PDF enlazan por N.° de trámite, folio real o presentación/asiento. Si falta el trámite, el expediente se crea con folio o presentación; una carga posterior puede completar y enlazar los identificadores.</div></div><div class="right"><button class="btn primary" onclick="fileJson.click()">JSON</button> <button class="btn" onclick="fileExcel.click()">Excel / CSV</button> <button class="btn" onclick="filePdf.click()">PDF</button></div></div><input id="fileJson" type="file" accept=".json" hidden multiple><input id="fileExcel" type="file" accept=".xlsx,.csv" hidden multiple><input id="filePdf" type="file" accept=".pdf" hidden multiple><div id="importMsg" class="small" style="margin-top:8px">Listo para importar.</div></div>
-<div class="card"><div class="toolbar"><div class="field"><label>Buscar</label><input id="fSearch" placeholder="Trámite, folio, presentación, solicitante..."></div><div class="field"><label>Distrito</label><select id="fDistrict"><option value="">Todos</option></select></div><div class="field"><label>Lugar</label><input id="fPlace"></div><button class="btn" onclick="clearFilters()">Limpiar</button><button class="btn primary" onclick="toggleNew()">+ Nuevo expediente</button><button class="btn" onclick="exportAll()">Exportar respaldo JSON</button></div></div>
-<div id="newCard" class="card" style="display:none"><h3>Registro de expediente</h3><div class="formgrid">
-<div class="field"><label>N.° trámite <span class="small">(opcional si hay folio o presentación)</span></label><input id="nTramite" placeholder="VMSDC 2026-xxxxx"></div><div class="field"><label>Fecha de solicitud / ingreso</label><input id="nFecha" type="date"></div><div class="field"><label>Solicitante</label><input id="nSolicitante"></div><div class="field"><label>Correo</label><input id="nCorreo" type="email"></div>
-<div class="field"><label>Folio real</label><input id="nFolio"></div><div class="field"><label>Plano</label><input id="nPlano"></div><div class="field"><label>N.° presentación / asiento</label><input id="nPresent"></div><div class="field"><label>Tomo</label><input id="nTomo"></div>
-<div class="field"><label>Asiento</label><input id="nAsiento"></div><div class="field"><label>Área</label><input id="nArea" placeholder="1952.00 m²"></div><div class="field"><label>Distrito</label><input id="nDistrito"></div><div class="field"><label>Lugar</label><input id="nLugar"></div>
-<div class="field"><label>Tipo de ingreso</label><select id="nIngreso"><option>Nuevo ingreso</option><option>Reingreso</option><option>Resello</option></select></div><div class="field"><label>Modalidad</label><select id="nModalidad"><option value="SIMPLE">Fraccionamiento simple</option><option value="URBANISTICO">Fines urbanísticos</option><option value="ACCESO_EXCEPCIONAL">Acceso excepcional residencial</option><option value="AGROPECUARIO">Agrícola / pecuario / forestal / mixto</option></select></div><div class="field"><label>Responsable</label><input id="nResponsable" value="Analista"></div></div><div class="toolbar" style="margin-top:9px"><button class="btn primary" onclick="saveNew()">Guardar</button><button class="btn" onclick="toggleNew()">Cancelar</button></div></div>
-<div class="card"><div class="tablewrap"><table><thead><tr><th>Trámite / referencia</th><th>Fecha solicitud / antigüedad</th><th>Folio / Plano</th><th>Presentación</th><th>Solicitante</th><th>Distrito / Lugar</th><th>Estado</th><th>Resultado</th><th></th></tr></thead><tbody id="expBody"></tbody></table></div></div>
-</section>
-
-
-<section class="page" id="page-pre">
-  <div class="card compact-card">
-    <div class="compact-toolbar">
-      <div class="field"><label>Expediente</label><select id="preExp"></select></div>
-      <div class="field"><label>Tipo de ingreso</label><select id="preIngreso"><option>Nuevo ingreso</option><option>Reingreso</option><option>Resello</option></select></div>
-      <div class="field"><label>Modalidad</label><select id="preModalidad"><option value="SIMPLE">Fraccionamiento simple</option><option value="URBANISTICO">Fines urbanísticos</option><option value="ACCESO_EXCEPCIONAL">Acceso excepcional residencial</option><option value="AGROPECUARIO">Agrícola / pecuario / forestal / mixto</option></select></div>
-      <span id="preSummary" class="right pill amber">Pendiente</span>
-    </div>
+<header class="app-header">
+  <div class="brand">
+    <img src="escudo-sarapiqui.png" alt="Escudo de la Municipalidad de Sarapiquí">
+    <div><h1>Fiscalización B.I.</h1><small>Inspección y fiscalización de bienes inmuebles · CRTM05 · Trabajo sin conexión · V01</small></div>
   </div>
-  <details class="accordion">
-    <summary>Condiciones que activan requisitos específicos</summary>
-    <div class="accordion-body condition-grid">
-      <label><input type="checkbox" id="condAgua"> Requiere disponibilidad de agua</label>
-      <label><input type="checkbox" id="condMopt"> Frente a Red Vial Nacional</label>
-      <label><input type="checkbox" id="condAreas"> Hay áreas públicas a ceder</label>
-      <label><input type="checkbox" id="condBosque"> Cobertura boscosa</label>
-      <label><input type="checkbox" id="condSinServ"> Sin servicios indispensables</label>
-      <label><input type="checkbox" id="condGrafica"> Corrección gráfica</label>
-      <label><input type="checkbox" id="condResello"> Resello &gt;1 año / otra presentación</label>
-    </div>
-  </details>
-  <div id="reqList"></div>
-  <div class="card compact-card">
-    <div class="compact-toolbar"><h3 style="margin:0">Incumplimientos para Calificación</h3><span id="preFailureCount" class="right pill green">0</span></div>
-    <div id="preFailures" class="pre-failures small">Sin incumplimientos obligatorios.</div>
+  <div class="header-actions">
+    <span class="status-pill"><i id="netDot" class="dot"></i><span id="netText">Verificando</span></span>
+    <button class="btn small" id="appUpdateBtn" title="Buscar actualización de esta V01">↻ <span>Actualizar</span></button>
+    <button class="btn small" id="installBtn" title="Instalar como aplicación nueva">⬇ <span>Instalar</span></button>
+    <button class="btn small" id="saveBtn">💾 <span>Guardar</span></button>
   </div>
-</section>
+</header>
+<div class="layout">
+<nav id="desktopNav" aria-label="Módulos">
+  <div class="nav-title">Fiscalización</div>
+  <button class="nav-btn active" data-view="process"><span class="nav-num">1</span>Trámites</button>
+  <button class="nav-btn" data-view="record"><span class="nav-num">2</span>Expediente</button>
+  <button class="nav-btn" data-view="terrain"><span class="nav-num">3</span>Terreno</button>
+  <button class="nav-btn" data-view="constructions"><span class="nav-num">4</span>Trámites de Fiscalización</button>
+  <button class="nav-btn" data-view="photos"><span class="nav-num">5</span>Fotografías</button>
+  <button class="nav-btn" data-view="fiscalization"><span class="nav-num">6</span>Fiscalización</button>
+  <button class="nav-btn" data-view="outputs"><span class="nav-num">7</span>Productos de salida</button>
+  <button class="nav-btn" data-view="management"><span class="nav-num">8</span>Gestión</button>
+  <div class="nav-footer">V01 · almacenamiento, caché e instalación separados de versiones anteriores.</div>
+</nav>
+<main>
+  <section class="view active" id="view-process">
+    <div class="hero"><div><h2>Trámites</h2><p>Expedientes activos de fiscalización.</p></div><div class="meta"><b id="activeCaseLabel">Sin expediente abierto</b><br><span id="activeCaseStage"></span></div></div>
+    <div class="card">
+      <div class="section-head"><h3>Expedientes</h3><div class="actions"><button class="btn primary" id="newCaseBtn">+ Nuevo trámite</button><button class="btn" id="exportAllBtn">Exportar JSON</button><label class="btn" style="display:inline-block">Importar JSON<input id="importAllInput" type="file" accept="application/json,.json" hidden></label></div></div>
+      <div class="filters" id="processFilters">
+        <label class="field search-wide"><span>Buscar expedientes</span><input id="processSearch" type="search" placeholder="Folio, trámite, finca o lugar"></label>
+        <label class="field"><span>Distrito</span><select id="processDistrict"><option value="">Todos</option></select></label>
+        <label class="field"><span>Lugar</span><select id="processPlace"><option value="">Todos</option></select></label>
+        <button class="btn filter-toggle" id="processAgro" aria-pressed="false">USO AGRO <span id="processAgroCount">0</span></button>
+      </div>
+      <div class="stats" id="processStats"></div>
+      <div class="help" id="processFilterStatus"></div>
+      <div class="case-list" id="processList"></div>
+      <div class="pager" id="processPager"></div>
+    </div>
+  </section>
 
-<section class="page" id="page-inspection">
-  <div class="card compact-card">
-    <div class="compact-toolbar">
-      <div class="field"><label>Expediente</label><select id="inspectionExp"></select></div>
-      <span id="inspectionSummary" class="pill amber">PENDIENTE</span>
-      <div class="right">
-        <button class="btn primary" onclick="addAccess()">+ Agregar acceso</button>
-        <button class="btn" id="toggleLCBtn" onclick="toggleLCView()">Ver datos desde L.C.</button>
+  <section class="view" id="view-record">
+    <div class="hero"><div><h2>Expediente</h2><p>Datos generales del trámite activo.</p></div><div class="meta" id="recordMeta"></div></div>
+    <div class="card" id="recordEmpty"><div class="notice warn">Seleccione o cree un trámite.</div></div>
+    <div id="recordForm" class="hidden">
+      <div class="card">
+        <div class="section-head"><h3>Datos del expediente</h3></div>
+        <div class="grid">
+          <label class="field col-3"><span>Folio</span><input data-path="general.folio"></label>
+          <label class="field col-3"><span>Trámite</span><input data-path="general.tramite"></label>
+          <label class="field col-3"><span>Número de finca</span><input data-path="general.finca"></label>
+          <label class="field col-3"><span>Plano catastrado</span><input data-path="general.plano"></label>
+          <label class="field col-6"><span>Propietario registral</span><input data-path="general.propietario"></label>
+          <label class="field col-3"><span>Identificación</span><input data-path="general.identificacion"></label>
+          <label class="field col-3"><span>Área según registro</span><input data-path="general.areaRegistro"></label>
+          <label class="field col-3"><span>Origen del dato</span><select data-path="general.origenDato"><option value="">Sin datos</option><option>Dato registral</option><option>Declaración</option><option>Campo</option></select></label>
+          <label class="field col-3"><span>Tipo de trámite</span><select data-path="general.tipoTramite"><option value="">Sin datos</option><option>Fiscalización</option><option>Rectificación</option><option>Otro</option></select></label>
+          <label class="field col-3"><span>Uso observado</span><select data-path="general.usoObservado"><option value="">Sin datos</option><option>Residencial</option><option>Comercial</option><option>Agropecuario</option><option>Mixto</option><option>Otro</option></select></label>
+          <label class="field col-3"><span>Fecha de declaración / solicitud</span><input type="date" data-path="general.fechaDeclaracion"></label>
+          <label class="field col-3"><span>Distrito</span><input data-path="general.distrito"></label>
+          <label class="field col-3"><span>Lugar / poblado</span><input data-path="general.lugar"></label>
+          <label class="field col-9"><span>Dirección de finca / folio</span><input data-path="general.direccionFinca"></label>
+          <label class="field col-3"><span>Derecho</span><input data-path="general.derecho"></label>
+          <label class="field col-3"><span>Provincia</span><input data-path="general.provincia"></label>
+          <label class="field col-3"><span>Cantón</span><input data-path="general.canton"></label>
+          <label class="field col-3"><span>Celular</span><input data-path="general.celular"></label>
+          <label class="field col-3"><span>Teléfono</span><input data-path="general.telefono"></label>
+          <label class="field col-4"><span>Correo</span><input type="email" data-path="general.correo"></label>
+          <label class="field col-4"><span>Representante legal</span><input data-path="general.representante"></label>
+          <label class="field col-4"><span>Cédula representante</span><input data-path="general.representanteCedula"></label>
+          <label class="field col-3"><span>Celular representante</span><input data-path="general.representanteCelular"></label>
+          <label class="field col-3"><span>Fax</span><input data-path="general.fax"></label>
+          <label class="field col-3"><span>Otro teléfono</span><input data-path="general.otroTel"></label>
+          <label class="field col-3"><span>Zona</span><input data-path="general.zona"></label>
+          <label class="field col-12"><span>Observaciones</span><textarea data-path="general.observaciones"></textarea></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-head"><h3>Ubicación - coordenadas</h3></div>
+        <div class="grid">
+          <label class="field col-3"><span>Coordenada Este</span><input type="number" step="0.001" data-path="location.east"></label>
+          <label class="field col-3"><span>Coordenada Norte</span><input type="number" step="0.001" data-path="location.north"></label>
+          <label class="field col-3"><span>Sistema de coordenadas</span><input readonly value="CR-SIRGAS / CRTM05"></label>
+          <label class="field col-3"><span>Fecha de toma</span><input type="date" data-path="location.takenAt"></label>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="accessList" class="access-list"></div>
-  <div class="card compact-card">
-    <div class="field"><label>Observaciones de inspección</label><textarea id="inspectionObs" placeholder="Observaciones de campo"></textarea></div>
-    <div class="compact-toolbar" style="margin-top:7px"><button class="btn primary" onclick="saveInspection()">Guardar inspección</button><span id="inspectionOverall" class="small"></span></div>
-  </div>
-</section>
+  </section>
 
-<section class="page" id="page-calificacion">
-  <div class="card compact-card">
-    <div class="cal-top">
-      <div class="field"><label>Expediente</label><select id="motorExp"></select></div>
-      <div class="field"><label>Encargado de Calificación</label><input id="calificador" placeholder="Nombre del encargado"></div>
-      <div class="cal-action"><button class="btn primary" onclick="toggleManualPanel()">+ Agregar detalle de rechazo</button></div>
+  <section class="view" id="view-terrain">
+    <div class="hero"><div><h2>Terreno</h2><p>Condición física, vía, servicios, cauce y uso agropecuario.</p></div></div>
+    <div id="terrainEmpty" class="card"><div class="notice warn">Seleccione o cree un trámite.</div></div>
+    <div id="terrainForm" class="hidden">
+      <details class="module-accordion" open data-md="terrain.condition"><summary><span>Condición física y entorno del terreno</span><span class="md-controls"><span class="md-label">Mostrar / ocultar</span><button class="md-btn" type="button" aria-pressed="false">MD ( )</button></span></summary><div class="md-summary" hidden></div><div class="module-body">
+        <div class="grid">
+          <div class="choice-field col-6" data-choice-path="terrain.topography"><span class="choice-title">Topografía</span><div class="choices" data-options="Plana|Ondulada|Quebrada|Muy quebrada"></div></div>
+          <label class="field col-3"><span>Pendiente (%)</span><input type="number" step="0.01" data-path="terrain.slope"></label>
+          <div class="choice-field col-3" data-choice-path="terrain.streetLevel"><span class="choice-title">Nivel respecto de vía</span><div class="choices" data-options="A nivel|Sobre nivel|Bajo nivel"></div></div>
+          <label class="field col-3"><span>Diferencia</span><input data-path="terrain.streetLevelDifference"></label>
+        </div>
+      </div></details>
+      <details class="module-accordion" open data-md="terrain.access"><summary><span>Acceso, vía y servicios</span><span class="md-controls"><span class="md-label">Mostrar / ocultar</span><button class="md-btn" type="button" aria-pressed="false">MD ( )</button></span></summary><div class="md-summary" hidden></div><div class="module-body">
+        <div class="grid">
+          <div class="choice-field col-6" data-choice-path="terrain.accessType"><span class="choice-title">Tipo de acceso</span><div class="choices" data-options="Público|Acceso excepcional (servidumbre de paso)|Servidumbre agrícola|Acceso al predio (callejón)|Otro"></div></div>
+          <div class="choice-field col-6" data-choice-path="terrain.surface"><span class="choice-title">Superficie</span><div class="choices" data-options="Asfalto|Concreto|Lastre|Tierra|Adoquín|Otro"></div></div>
+          <div class="choice-field col-6" data-choice-path="terrain.services1Code"><span class="choice-title">Servicios 1</span><div class="choices" data-options="1 — Sin acera; sin cordón y caño|2 — Acera|3 — Cordón y caño|4 — Acera + cordón y caño"></div></div>
+          <div class="choice-field col-6" data-choice-path="terrain.services2Code"><span class="choice-title">Servicios 2</span><div class="choices" data-options="11 — Electricidad|12 — Electricidad + cañería|13 — Alumbrado + electricidad|14 — Alumbrado + electricidad + cañería"></div></div>
+        </div>
+      </div></details>
+      <details class="module-accordion" open data-md="terrain.water"><summary><span>Cauce o cuerpo de agua</span><span class="md-controls"><span class="md-label">Mostrar / ocultar</span><button class="md-btn" type="button" aria-pressed="false">MD ( )</button></span></summary><div class="md-summary" hidden></div><div class="module-body">
+        <div class="choice-field" data-choice-path="terrain.waterAffected"><span class="choice-title">¿Existe marcación de cauce o cuerpo de agua?</span><div class="choices" data-options="Sí|No"></div></div>
+        <label class="field" id="waterNotesField"><span>Observaciones de cauce</span><textarea data-path="terrain.waterNotes"></textarea></label>
+      </div></details>
+      <details class="module-accordion" open data-md="terrain.agro"><summary><span>Uso agropecuario</span><span class="md-controls"><span class="md-label">Mostrar / ocultar</span><button class="md-btn" type="button" aria-pressed="false">MD ( )</button></span></summary><div class="md-summary" hidden></div><div class="module-body">
+        <div class="choice-field" data-choice-path="terrain.agroDeclared"><span class="choice-title">Uso agropecuario</span><div class="choices" data-options="Sí|No"></div></div>
+        <div id="agroFields" class="grid">
+          <label class="field col-6"><span>Actividad agropecuaria</span><input data-path="terrain.agroActivity"></label>
+          <label class="field col-3"><span>Área agropecuaria</span><input type="number" step="0.01" data-path="terrain.agroArea"></label>
+          <label class="field col-12"><span>Observaciones</span><textarea data-path="terrain.agroNotes"></textarea></label>
+        </div>
+      </div></details>
+      <div class="card"><label class="field"><span>Observación técnica del terreno</span><textarea data-path="terrain.notes"></textarea></label></div>
     </div>
-    <div class="flow-summary" id="flowSummary" style="margin-top:8px"></div>
-    <div id="decisionBox" class="statusbox amber">PENDIENTE</div>
-    <div id="manualPanel" class="manual-panel">
-      <div class="formgrid" style="grid-template-columns:repeat(3,minmax(170px,1fr))">
-        <div class="field"><label>Detalle / observación</label><textarea id="manualDetalle"></textarea></div>
-        <div class="field"><label>Motivación técnica</label><textarea id="manualMotivacion"></textarea></div>
-        <div class="field"><label>Fundamento jurídico</label><textarea id="manualFundamento"></textarea></div>
+  </section>
+
+  <section class="view" id="view-constructions">
+    <div class="hero"><div><h2>Trámites de Fiscalización</h2><p>Construcciones + croquis. Cada construcción mantiene estado y escala común.</p></div></div>
+    <div class="card"><div class="section-head"><h3>Construcciones + croquis</h3><div class="actions"><button class="btn primary" id="addConstructionBtn">+ Nueva construcción</button></div></div><div id="constructionList"></div></div>
+  </section>
+
+  <section class="view" id="view-photos">
+    <div class="hero"><div><h2>Fotografías</h2><p>Anexos fotográficos del terreno, construcción y uso agropecuario.</p></div></div>
+    <div class="card"><div class="photo-controls">
+      <label class="field"><span>Tipo</span><select id="photoType"><option>Terreno</option><option>Agro</option><option id="photoConstructionOption">Construcción</option></select></label>
+      <label class="field" id="photoConstructionField"><span>Construcción</span><select id="photoConstruction"></select></label>
+      <label class="field"><span>Descripción</span><input id="photoCaption" placeholder="Fachada, vista general, acceso..."></label>
+      <label class="btn primary" style="display:inline-flex;align-items:center;justify-content:center">Agregar fotos<input id="photoInput" type="file" accept="image/*" capture="environment" multiple hidden></label>
+    </div><div class="photo-grid" id="photoGrid"></div></div>
+  </section>
+
+  <section class="view" id="view-fiscalization">
+    <div class="hero"><div><h2>Fiscalización</h2><p>Verificación y resultado automático.</p></div></div>
+    <div class="card"><div class="result-grid">
+      <div class="result-question"><span>Terreno: ¿los parámetros verificados guardan conformidad con la declaración?</span><select data-path="fiscalization.landValueMatches"><option value="">Pendiente</option><option>Sí</option><option>No</option></select></div>
+      <div class="result-question" id="constructionFiscalQuestion"><span>Construcciones: ¿las características verificadas guardan conformidad?</span><select data-path="fiscalization.constructionMatches"><option value="">Pendiente</option><option>Sí</option><option>No</option></select></div>
+      <div class="result-question" id="constructionMeasureQuestion"><span>Construcciones: ¿las mediciones verificadas guardan conformidad?</span><select data-path="fiscalization.constructionMeasureMatches"><option value="">Pendiente</option><option>Sí</option><option>No</option></select></div>
+      <div class="result-question" id="agroActivityQuestion"><span>Uso agropecuario: ¿la actividad declarada guarda conformidad?</span><select data-path="fiscalization.agroActivityMatches"><option value="">Pendiente</option><option>Sí</option><option>No</option></select></div>
+      <div class="result-question" id="agroAreaQuestion"><span>Uso agropecuario: ¿el área declarada guarda conformidad?</span><select data-path="fiscalization.agroAreaMatches"><option value="">Pendiente</option><option>Sí</option><option>No</option></select></div>
+    </div></div>
+    <div class="card"><h3>Resolución administrativa</h3><div id="decisionBox" class="decision PENDIENTE">PENDIENTE</div><ul id="decisionIssues" class="issues"></ul><label class="field"><span>Motivación técnica adicional</span><textarea data-path="fiscalization.notes"></textarea></label><div class="section-head" style="margin-top:10px"><h3>Responsable de la resolución administrativa</h3></div><div class="grid"><label class="field col-4"><span>Funcionario</span><input data-path="report.responsibleName"></label><label class="field col-4"><span>Puesto</span><input data-path="report.responsiblePosition"></label><label class="field col-4"><span>Fecha y hora</span><input type="datetime-local" data-path="report.responsibleDateTime"></label></div><div class="actions" style="margin-top:10px"><button class="btn primary" id="moveManagementBtn">Trasladar a Gestión</button></div></div>
+  </section>
+
+  <section class="view" id="view-outputs">
+    <div class="hero"><div><h2>Productos de salida</h2><p>Vista previa, Word sobre machote final y salida PDF mediante impresión.</p></div></div>
+    <div class="card output-grid">
+      <section class="output-submodule"><h4>1. Informe y Decisión Administrativa</h4><div class="output-actions"><button class="btn secondary" id="refreshReportPreviewBtn">Actualizar vista previa</button><button class="btn pdf" id="printReportBtn">PDF / Imprimir</button><button class="btn primary" id="reportWordBtn">Word</button></div><iframe id="reportPreviewFrame" class="preview-frame" title="Vista previa Informe y Resolución"></iframe></section>
+      <section class="output-submodule hidden" id="rectificationSubmodule"><h4>2. Rectificación</h4><div class="output-actions"><span class="notice ok" id="rectificationOfficeStatus" style="margin:0"></span><button class="btn secondary" id="refreshRectPreviewBtn">Actualizar vista previa</button><button class="btn pdf" id="printRectBtn">PDF / Imprimir</button><button class="btn primary" id="rectWordBtn">Word</button></div><iframe id="rectificationPreviewFrame" class="preview-frame" title="Vista previa Rectificación"></iframe></section>
+    </div>
+  </section>
+
+  <section class="view" id="view-management">
+    <div class="hero"><div><h2>Gestión</h2><p>Expedientes trasladados después de la inspección.</p></div></div>
+    <div class="card">
+      <div class="filters" id="managementFilters">
+        <label class="field search-wide"><span>Buscar expedientes</span><input id="managementSearch" type="search" placeholder="Folio, trámite, finca o lugar"></label>
+        <label class="field"><span>Distrito</span><select id="managementDistrict"><option value="">Todos</option></select></label>
+        <label class="field"><span>Lugar</span><select id="managementPlace"><option value="">Todos</option></select></label>
+        <button class="btn filter-toggle" id="managementAgro" aria-pressed="false">USO AGRO <span id="managementAgroCount">0</span></button>
       </div>
-      <div class="compact-toolbar" style="margin-top:6px"><button class="btn primary" onclick="addManualReject()">Guardar detalle</button><button class="btn" onclick="toggleManualPanel(false)">Cancelar</button></div>
+      <div class="stats" id="managementStats"></div><div class="help" id="managementFilterStatus"></div><div class="case-list" id="managementList"></div><div class="pager" id="managementPager"></div>
     </div>
-  </div>
-  <div class="grid2">
-    <div>
-      <div class="card compact-card"><div class="compact-toolbar"><div class="field"><label>Buscar causal</label><input id="defSearch" placeholder="Código, equivalente, descripción o término similar"></div><div class="field"><label>Categoría</label><select id="defCat"><option value="">Todas</option></select></div></div></div>
-      <div class="card compact-card"><div id="catalog" class="catalog"></div></div>
-    </div>
-    <div>
-      <div class="card compact-card"><h3>Incumplimientos heredados</h3><div id="inheritedRejects" class="inherited-list small">Sin incumplimientos.</div></div>
-      <div class="card compact-card"><h3>Detalles de rechazo agregados</h3><div id="manualRejectList" class="manual-list small">Ninguno.</div></div>
-      <div class="card compact-card"><h3>Detalle de la causal</h3><div id="defDetail" class="detail" style="min-height:150px">Seleccione una causal para consultar su detalle y fundamento.</div></div>
-      <div class="card compact-card"><div class="compact-toolbar"><h3 style="margin:0">Motivos seleccionados</h3><span id="selectedCount" class="right pill green">0</span></div><div id="selectedDefs" class="small">Sin causales seleccionadas.</div><button class="btn primary" style="margin-top:8px" onclick="saveQualification()">Guardar calificación</button></div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-cierre"><div class="grid2"><div><div class="card"><div class="field"><label>Expediente</label><select id="closeExp"></select></div></div><div class="card"><h3>Datos variables del oficio</h3><div class="formgrid" style="grid-template-columns:repeat(3,minmax(120px,1fr))"><div class="field"><label>Fecha del oficio</label><input id="rFecha" type="date"></div><div class="field"><label>Tomo</label><input id="rTomo"></div><div class="field"><label>Asiento</label><input id="rAsiento"></div><div class="field"><label>Área</label><input id="rArea"></div><div class="field"><label>Folio real</label><input id="rFolio"></div><div class="field"><label>Distrito</label><input id="rDistrito"></div><div class="field"><label>Solicitante</label><input id="rSolicitante"></div><div class="field"><label>Funcionario / topógrafo</label><input id="rFuncionario" value="Kristian Anthony Castillo Oviedo"></div><div class="field"><label>Puesto</label><input id="rPuesto" value="Topógrafo · Departamento de Catastro y Topografía"></div></div><div class="toolbar" style="margin-top:9px"><button class="btn primary" onclick="saveReportFields()">Actualizar oficio</button><button class="btn success" id="finalBtn" onclick="finalizeCase()">Finalizar gestión</button><button class="btn danger" id="reopenBtn" onclick="reopenCase()">Reabrir</button></div></div><div class="card"><div class="toolbar"><h3 style="margin:0">Salida</h3><span id="closeStatus" class="right pill green"></span></div><div class="toolbar"><button class="btn primary" onclick="printReport()">Imprimir / Guardar PDF</button><button class="btn" onclick="downloadCase()">Descargar expediente JSON</button></div></div></div><div><div class="preview"><iframe id="reportFrame" title="Vista previa del oficio oficial"></iframe></div><div class="report-note">Vista previa basada en los machotes oficiales definidos para APROBACIÓN y RECHAZO. No se rediseña el oficio.</div></div></div></section>
-<script src="./js/data.js"></script>
-<script src="./js/app.js"></script>
+  </section>
+</main>
+</div>
+<div class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
+  <button data-view="process" class="active">Trámites</button><button data-view="record">Expediente</button><button data-view="terrain">Terreno</button><button data-view="constructions">Construcciones</button><button data-view="photos">Fotos</button><button data-view="fiscalization">Fiscalización</button><button data-view="outputs">Salida</button><button data-view="management">Gestión</button>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
 </body>
 </html>
