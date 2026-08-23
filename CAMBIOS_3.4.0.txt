@@ -1,0 +1,15 @@
+C-VISADOS 3.4.0 — IDENTIDAD DE TRÁMITES E IMPORTACIÓN
+
+- Si un registro llega sin N.° de trámite, se asigna X:001, X:002, X:003...
+- Varios expedientes pueden compartir el mismo folio real.
+- Varios expedientes pueden compartir la misma presentación/asiento.
+- Un folio o presentación compartidos ya NO obligan a fusionar expedientes.
+- Si Excel, PDF o JSON aportan después el trámite real, la referencia X se sustituye automáticamente.
+- Si existen varias X candidatas con el mismo folio/presentación, se usa la mejor coincidencia de datos y, en empate, la X más antigua.
+- Se conserva historial de cambios de N.° de trámite.
+- Los expedientes provisionales permiten asignar el trámite manualmente desde la tabla.
+- El listado de Trámites es ahora un acordeón que conserva filtros y muestra un resumen de resultados.
+- Las filas indican cuándo un folio o presentación son compartidos por varios trámites.
+- Exportar respaldo JSON continúa incluyendo todos los expedientes y su información.
+
+No se modificaron requisitos, catálogo de Calificación ni machotes oficiales.

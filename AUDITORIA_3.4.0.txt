@@ -1,0 +1,70 @@
+C-VISADOS 3.4.0 — AUDITORÍA DE IDENTIDAD E IMPORTACIÓN
+
+REGLA IMPLEMENTADA
+- El N.° de trámite es la identidad principal cuando existe.
+- Folio y presentación pueden repetirse en trámites distintos.
+- Sin trámite real se asigna X:001, X:002, X:003...
+- Excel, PDF o JSON pueden sustituir automáticamente X por el trámite real.
+- Se conserva el expediente y el historial de asignación.
+- La tabla permite asignación manual si se requiere.
+
+INTERFAZ
+- Listado de trámites en acordeón.
+- Filtros conservados al ocultar/mostrar.
+- Resumen dinámico de resultados.
+- Folios/presentaciones compartidos se señalan sin fusionar trámites.
+
+RESULTADO FINAL: 52/52 controles correctos
+
+[OK] Sintaxis js/app.js
+[OK] Sintaxis js/data.js
+[OK] Sintaxis js/pwa.js
+[OK] Sintaxis sw.js
+[OK] Protegido intacto: js/data.js
+[OK] Protegido intacto: data/requisitos.json
+[OK] Protegido intacto: data/catalogo_rechazos.json
+[OK] Protegido intacto: assets/templates/APROBACION_BASE_2029.png
+[OK] Protegido intacto: assets/templates/HEADER_2029.png
+[OK] Protegido intacto: assets/templates/BUSINESS_CARD_2029.png
+[OK] Versión app 3.4.0
+[OK] Versión PWA 3.4.0
+[OK] Versión SW 3.4.0
+[OK] Acordeón de trámites
+[OK] Resumen de filtros
+[OK] Generador X
+[OK] Asignación manual
+[OK] Asignación automática
+[OK] Permite folio compartido
+[OK] Badge folio compartido
+[OK] JSON total conservado
+[OK] Importadores Excel/JSON/PDF conservados
+[OK] PWA reparación conservada
+[OK] Módulo tramites
+[OK] Módulo pre
+[OK] Módulo inspection
+[OK] Módulo calificacion
+[OK] Módulo cierre
+[OK] Aprobación oficial
+[OK] Rechazo oficial HEADER
+[OK] Rechazo oficial BUSINESS_CARD
+[OK] Prueba funcional identidad múltiples trámites
+[OK] Ruta GitHub correcta: index.html
+[OK] Ruta GitHub correcta: manifest.webmanifest
+[OK] Ruta GitHub correcta: sw.js
+[OK] Ruta GitHub correcta: .nojekyll
+[OK] Ruta GitHub correcta: css/app.css
+[OK] Ruta GitHub correcta: js/app.js
+[OK] Ruta GitHub correcta: js/pwa.js
+[OK] Sin BAT
+[OK] Sin PS1
+[OK] Sin EXE
+[OK] Sin MSI
+[OK] Sin L-26
+[OK] ZIP íntegro
+[OK] ZIP contiene index.html
+[OK] ZIP contiene manifest.webmanifest
+[OK] ZIP contiene sw.js
+[OK] ZIP contiene .nojekyll
+[OK] ZIP contiene js/app.js
+[OK] ZIP contiene js/pwa.js
+[OK] ZIP contiene AUDITORIA_3.4.0.txt

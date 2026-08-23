@@ -1,10 +1,22 @@
-C-VISADOS 3.3.0 — GITHUB PAGES
+C-VISADOS 3.4.0 — GITHUB PAGES
 
-1. Descomprima el ZIP.
-2. Suba TODO el contenido descomprimido a la raíz del repositorio.
-3. Deben verse directamente en la raíz: index.html, manifest.webmanifest, sw.js, css/, js/, data/, assets/.
-4. Settings > Pages > Deploy from a branch > main > / (root).
-5. Abra la URL HTTPS de GitHub Pages.
-6. Para PWA, use Edge/Chrome y la opción Instalar C-VISADOS.
+1. Descomprima C_VISADOS_REPOSITORIO_3.4.0.zip.
+2. Suba TODO el contenido directamente a la raíz del repositorio.
+3. Settings > Pages:
+   Source: Deploy from a branch
+   Branch: main
+   Folder: / (root)
+4. Abra la URL HTTPS publicada por GitHub Pages.
+5. Si una instalación PWA anterior queda en caché, use “Revisar instalación” > “Reparar y recargar”.
 
-No suba solamente el ZIP y no coloque todo dentro de una carpeta adicional.
+La raíz debe contener directamente:
+index.html
+manifest.webmanifest
+sw.js
+.nojekyll
+css/
+js/
+data/
+assets/
+
+No contiene BAT, PowerShell, EXE ni MSI.

@@ -1,0 +1,99 @@
+C-VISADOS 3.3.1 — AUDITORÍA DE INSTALACIÓN PWA
+
+OBJETIVO
+Corregir la instalación observada en GitHub Pages sin modificar los módulos funcionales.
+
+PROTECCIÓN
+- Requisitos, catálogo, datos y machotes intactos por SHA-256.
+- La lógica PWA se independiza de la lógica de negocio.
+- Reparar y recargar no borra localStorage ni expedientes.
+
+RESULTADO FINAL: 87/87 controles correctos
+
+[OK] Protegido intacto: js/data.js
+[OK] Protegido intacto: data/requisitos.json
+[OK] Protegido intacto: data/catalogo_rechazos.json
+[OK] Protegido intacto: assets/templates/APROBACION_BASE_2029.png
+[OK] Protegido intacto: assets/templates/HEADER_2029.png
+[OK] Protegido intacto: assets/templates/BUSINESS_CARD_2029.png
+[OK] Lógica funcional app.js intacta
+[OK] APP_VERSION 3.3.1
+[OK] Módulo presente: tramites
+[OK] Módulo presente: pre
+[OK] Módulo presente: inspection
+[OK] Módulo presente: calificacion
+[OK] Módulo presente: cierre
+[OK] Control presente: preExp
+[OK] Control presente: inspectionExp
+[OK] Control presente: motorExp
+[OK] Control presente: closeExp
+[OK] Control presente: reportFrame
+[OK] Control presente: installBtn
+[OK] Manifest name
+[OK] Manifest short_name
+[OK] Manifest start_url
+[OK] Manifest scope
+[OK] Manifest standalone
+[OK] Icono any 192
+[OK] Icono any 512
+[OK] Icono maskable 192
+[OK] Icono maskable 512
+[OK] pwa.js cargado antes de app.js
+[OK] Captura temprana beforeinstallprompt
+[OK] Sin alert de instalación anterior
+[OK] Reparación conserva localStorage
+[OK] Limpieza solo cachés C-VISADOS
+[OK] SW updateViaCache none
+[OK] SW script versionado
+[OK] SW core incluye pwa.js
+[OK] SW cache 3.3.1
+[OK] SW network-first navegación
+[OK] SW borra caches anteriores
+[OK] icon-192.png dimensiones — (192, 192)
+[OK] icon-512.png dimensiones — (512, 512)
+[OK] icon-maskable-192.png dimensiones — (192, 192)
+[OK] icon-maskable-512.png dimensiones — (512, 512)
+[OK] Node --check js/pwa.js
+[OK] Node --check js/data.js
+[OK] Node --check js/app.js
+[OK] Node --check sw.js
+[OK] Recurso manifest existe: assets/icon-192.png
+[OK] Recurso manifest existe: assets/icon-512.png
+[OK] Recurso manifest existe: assets/icon-maskable-192.png
+[OK] Recurso manifest existe: assets/icon-maskable-512.png
+[OK] CORE existe: index.html
+[OK] CORE existe: css/app.css
+[OK] CORE existe: js/pwa.js
+[OK] CORE existe: js/data.js
+[OK] CORE existe: js/app.js
+[OK] CORE existe: manifest.webmanifest
+[OK] CORE existe: assets/icon-192.png
+[OK] CORE existe: assets/icon-512.png
+[OK] CORE existe: assets/icon-maskable-192.png
+[OK] CORE existe: assets/icon-maskable-512.png
+[OK] OPTIONAL existe: assets/c-visados-app.png
+[OK] OPTIONAL existe: assets/escudo.png
+[OK] OPTIONAL existe: assets/sarapiqui.png
+[OK] OPTIONAL existe: assets/templates/APROBACION_BASE_2029.png
+[OK] OPTIONAL existe: assets/templates/HEADER_2029.png
+[OK] OPTIONAL existe: assets/templates/BUSINESS_CARD_2029.png
+[OK] OPTIONAL existe: data/requisitos.json
+[OK] OPTIONAL existe: data/catalogo_rechazos.json
+[OK] Sin BAT
+[OK] Sin PowerShell
+[OK] Sin EXE
+[OK] Sin MSI
+[OK] Sin L-26
+[OK] Raíz/ruta correcta: index.html
+[OK] Raíz/ruta correcta: manifest.webmanifest
+[OK] Raíz/ruta correcta: sw.js
+[OK] Raíz/ruta correcta: .nojekyll
+[OK] Raíz/ruta correcta: css/app.css
+[OK] Raíz/ruta correcta: js/app.js
+[OK] Raíz/ruta correcta: js/pwa.js
+[OK] ZIP íntegro
+[OK] ZIP contiene index.html en ruta correcta
+[OK] ZIP contiene manifest.webmanifest en ruta correcta
+[OK] ZIP contiene sw.js en ruta correcta
+[OK] ZIP contiene .nojekyll en ruta correcta
+[OK] ZIP contiene js/pwa.js en ruta correcta

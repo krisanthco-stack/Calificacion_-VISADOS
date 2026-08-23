@@ -1,0 +1,14 @@
+C-VISADOS 3.3.1
+
+Corrección exclusiva de instalación PWA:
+- elimina alerta de instalación que no diagnosticaba el problema;
+- captura temprana de beforeinstallprompt;
+- nuevo js/pwa.js independiente;
+- registro de Service Worker con actualización sin caché;
+- diagnóstico visible de HTTPS, manifest y Service Worker;
+- botón Reparar y recargar sin borrar expedientes;
+- nuevos iconos maskable;
+- Service Worker 3.3.1 reforzado.
+
+No se modificaron Trámites, Precalificación, Inspección, Calificación,
+Resoluciones, requisitos, catálogo ni machotes.
