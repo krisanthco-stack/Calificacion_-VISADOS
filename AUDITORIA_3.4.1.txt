@@ -1,0 +1,47 @@
+C-VISADOS 3.4.1 — AUDITORÍA TRÁMITES COMPACTO
+
+RESULTADO VISUAL/FUNCIONAL
+- Se redujo significativamente la altura del módulo de Trámites.
+- Importar expedientes ya no ocupa una tarjeta alta.
+- Los 416 expedientes de "Sin distrito" pueden abrirse individualmente.
+- La vista individual muestra X, folio, presentación y acciones.
+
+RESULTADO FINAL: 37/37 controles correctos
+
+[OK] Sintaxis js/app.js
+[OK] Sintaxis js/data.js
+[OK] Sintaxis js/pwa.js
+[OK] Sintaxis sw.js
+[OK] Protegido intacto js/data.js
+[OK] Protegido intacto data/requisitos.json
+[OK] Protegido intacto data/catalogo_rechazos.json
+[OK] Protegido intacto assets/templates/APROBACION_BASE_2029.png
+[OK] Protegido intacto assets/templates/HEADER_2029.png
+[OK] Protegido intacto assets/templates/BUSINESS_CARD_2029.png
+[OK] Versión app 3.4.1
+[OK] PWA 3.4.1
+[OK] SW 3.4.1
+[OK] Import card compacta
+[OK] CSS compactación
+[OK] Grupo independiente
+[OK] Sin distrito filtrable
+[OK] Botón ver expedientes
+[OK] Botón volver
+[OK] Acordeón conservado
+[OK] X provisional conservado
+[OK] Excel conservado
+[OK] JSON conservado
+[OK] PDF conservado
+[OK] Prueba 416 expedientes visibles
+[OK] Ruta GitHub index.html
+[OK] Ruta GitHub manifest.webmanifest
+[OK] Ruta GitHub sw.js
+[OK] Ruta GitHub .nojekyll
+[OK] Ruta GitHub css/app.css
+[OK] Ruta GitHub js/app.js
+[OK] Ruta GitHub js/pwa.js
+[OK] Sin BAT
+[OK] Sin PS1
+[OK] Sin EXE
+[OK] Sin MSI
+[OK] ZIP íntegro

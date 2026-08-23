@@ -1,0 +1,24 @@
+C-VISADOS 3.4.1 — TRÁMITES COMPACTO + CORRECCIÓN "SIN DISTRITO"
+
+CORRECCIÓN FUNCIONAL
+- Los expedientes de "Sin distrito" ahora se abren y muestran individualmente.
+- Antes "Abrir distrito" dejaba el filtro vacío y regresaba al mismo resumen.
+- Se agregó "← Resumen" para volver a la agrupación.
+- Búsqueda y lugar funcionan dentro del grupo abierto.
+
+COMPACTACIÓN UI/UX
+- KPIs más bajos.
+- Aviso de normalización más compacto.
+- Importar expedientes reducido a una franja horizontal.
+- Botones JSON / Excel / PDF más pequeños.
+- Estado de importación compacto.
+- Acordeón de Trámites más bajo.
+- Filtros y botones reducidos.
+- Tabla con filas, encabezados, badges y acciones más densas.
+
+NO SE MODIFICÓ
+- Requisitos.
+- Catálogo.
+- Machotes.
+- Lógica X:001/X:002...
+- Importación Excel/JSON/PDF.

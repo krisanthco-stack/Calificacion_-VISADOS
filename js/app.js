@@ -1,10 +1,10 @@
-const APP_VERSION='3.4.0';
+const APP_VERSION='3.4.1';
 const STORAGE='control_visados_2_5_expedientes';
 const {REQUISITOS,CATALOGO}=window.CV_DATA;
 const SEED=[];
 const DISTRICT_ALIASES={'horquetas':'Horquetas','las horquetas':'Horquetas','horqueta':'Horquetas','la horqueta':'Horquetas','horq':'Horquetas','horqs':'Horquetas','horqts':'Horquetas','horqtas':'Horquetas','puerto viejo':'Puerto Viejo','pto viejo':'Puerto Viejo','pto. viejo':'Puerto Viejo','p viejo':'Puerto Viejo','puertoviejo':'Puerto Viejo','la virgen':'La Virgen','virgen':'La Virgen','la vigen':'La Virgen','llanuras del gaspar':'Llanuras del Gaspar','llanura del gaspar':'Llanuras del Gaspar','llanuras gaspar':'Llanuras del Gaspar','gaspar':'Llanuras del Gaspar','curena':'Cureña','cureña':'Cureña'};
 const PLACE_ALIASES={'palmita':'Las Palmitas','palmitas':'Las Palmitas','las palmita':'Las Palmitas','las palmitas':'Las Palmitas','palmiatas':'Las Palmitas','palmintas':'Las Palmitas'};
-const $=id=>document.getElementById(id); let expedientes=load();let currentPre=null,currentInspection=null,currentMotor=null,currentClose=null,showLCFields=false;
+const $=id=>document.getElementById(id); let expedientes=load();let currentPre=null,currentInspection=null,currentMotor=null,currentClose=null,showLCFields=false,activeDistrictGroup=null;
 function load(){try{let v=JSON.parse(localStorage.getItem(STORAGE)||'null');return Array.isArray(v)?v:structuredClone(SEED)}catch{return structuredClone(SEED)}}function persist(){localStorage.setItem(STORAGE,JSON.stringify(expedientes))}function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function foldName(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/[._,;:/\\\-]+/g,' ').replace(/\s+/g,' ')}function titleName(v){return String(v??'').trim().toLowerCase().replace(/\b([a-záéíóúñ])/g,m=>m.toUpperCase())}function levenshtein(a,b){a=foldName(a);b=foldName(b);let p=Array.from({length:b.length+1},(_,i)=>i),c=[];for(let i=1;i<=a.length;i++){c=[i];for(let j=1;j<=b.length;j++)c[j]=Math.min(c[j-1]+1,p[j]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[b.length]}function canonical(v,map){let f=foldName(v);if(map[f])return map[f];for(const [k,val] of Object.entries(map)){if(f.length>4&&levenshtein(f,k)<=1)return val}return titleName(v)}
 function provisionalNumber(v){let m=String(v||'').trim().match(/^X\s*:\s*(\d+)$/i);return m?Number(m[1]):null}
 function isProvisionalTramiteValue(v){return provisionalNumber(v)!==null}
@@ -22,7 +22,7 @@ e.cond=e.cond&&typeof e.cond==='object'?e.cond:{};e.importaciones=Array.isArray(
 if(!Array.isArray(e.inspection.accesos)){let legacyHas=[e.inspection.anchoCallePlanoMadre,e.inspection.anchoCalleInspeccion,e.inspection.distanciaDesdeLC,e.inspection.distanciaDesdeLCInspeccion,e.inspection.acceso].some(v=>v!==undefined&&v!==null&&v!=='');e.inspection.accesos=[{tipo:e.inspection.acceso||'Calle pública',anchoPlano:e.inspection.anchoCallePlanoMadre??null,anchoInspeccion:e.inspection.anchoCalleInspeccion??null,referencia:e.inspection.referenciaMedicion||'ANCHO_TOTAL',desdeLC:e.inspection.distanciaDesdeLC??null,desdeLCInspeccion:e.inspection.distanciaDesdeLCInspeccion??null,observacion:''}];if(legacyHas)e.inspection.guardada=true}
 if(!e.inspection.accesos.length)e.inspection.accesos=[emptyAccess()];e.inspection.accesos.forEach(a=>{a.desdeLCInspeccion??=null;if(a.tipo==='Acceso excepcional'||a.tipo==='Servidumbre')a.tipo='Servidumbre de paso (Acceso excepcional)'});e.defectIds=Array.isArray(e.defectIds)?e.defectIds:[];e.manualRejects=Array.isArray(e.manualRejects)?e.manualRejects:[];e.report=e.report||{};if(!e.finalizado)updateDecision(e);return e
 }expedientes.forEach(normalizeCase);function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));document.querySelectorAll('.nav [data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('pageTitle').textContent={tramites:'Módulo de Trámites',pre:'Precalificación',inspection:'Inspección de Campo',calificacion:'Calificación',cierre:'Resoluciones e Informes'}[page]||'C-VISADOS';renderAll()}document.querySelectorAll('.nav [data-page]').forEach(b=>b.onclick=()=>go(b.dataset.page));
-$('fSearch').oninput=renderTable;$('fDistrict').onchange=renderTable;$('fPlace').oninput=renderTable;
+$('fSearch').oninput=renderTable;$('fDistrict').onchange=()=>{activeDistrictGroup=null;renderTable()};$('fPlace').oninput=renderTable;
 
 function isoUTC(d){return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`}
 function parseISODate(s){let m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);if(!m)return null;let d=new Date(Date.UTC(Number(m[1]),Number(m[2])-1,Number(m[3])));return Number.isNaN(d.getTime())?null:d}
@@ -39,19 +39,44 @@ function sharedReferenceBadge(e,field){let n=sharedReferenceCount(e,field);retur
 function filterDescription(sQ,d,pQ,visible,total){let parts=[];if(sQ)parts.push(`búsqueda: ${$('fSearch').value.trim()}`);if(d)parts.push(`distrito: ${d}`);if(pQ)parts.push(`lugar: ${$('fPlace').value.trim()}`);let txt=`${visible} de ${total} visibles`;if(parts.length)txt+=` · ${parts.join(' · ')}`;let el=$('tramitesSummary');if(el)el.textContent=txt}
 function provisionalLabel(e){return isProvisionalCase(e)?'<span class="pill amber provisional-pill">PROVISIONAL</span>':''}
 function renderTable(){
- let sQ=foldName($('fSearch').value),d=$('fDistrict').value,pQ=foldName($('fPlace').value);
+ let sQ=foldName($('fSearch').value),d=$('fDistrict').value,pQ=foldName($('fPlace').value),groupFilter=activeDistrictGroup;
  let active=expedientes.filter(e=>!e.finalizado);
- let rows=active.filter(e=>(!sQ||foldName([e.tramite,e.solicitante,e.folio,e.plano,e.presentacion,e.asiento].join(' ')).includes(sQ))&&(!d||e.distrito===d)&&(!pQ||foldName(e.lugar).includes(pQ)));
+ let rows=active.filter(e=>{
+   let districtOk=!d||e.distrito===d;
+   if(groupFilter!==null)districtOk=groupFilter==='Sin distrito'?!String(e.distrito||'').trim():(e.distrito||'Sin distrito')===groupFilter;
+   return (!sQ||foldName([e.tramite,e.solicitante,e.folio,e.plano,e.presentacion,e.asiento].join(' ')).includes(sQ))&&districtOk&&(!pQ||foldName(e.lugar).includes(pQ))
+ });
  filterDescription(sQ,d,pQ,rows.length,active.length);
- if(!sQ&&!d&&!pQ){
+ let summary=$('tramitesSummary');
+ if(summary&&groupFilter!==null){
+   let extra=[sQ?`búsqueda: ${$('fSearch').value.trim()}`:'',pQ?`lugar: ${$('fPlace').value.trim()}`:''].filter(Boolean).join(' · ');
+   summary.textContent=`${rows.length} expediente(s) · ${groupFilter}${extra?' · '+extra:''}`;
+ }
+ if(!sQ&&!d&&!pQ&&groupFilter===null){
    let groups=[...new Set(active.map(e=>e.distrito||'Sin distrito'))].sort((a,b)=>a.localeCompare(b,'es'));
-   $('expBody').innerHTML=groups.length?groups.map(name=>{let items=active.filter(e=>(e.distrito||'Sin distrito')===name),places=[...new Set(items.map(e=>e.lugar).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),rej=items.filter(e=>e.dictamen==='RECHAZADO').length,red=items.filter(e=>ageInfo(e).days>=15).length,orange=items.filter(e=>{let a=ageInfo(e);return a.days>10&&a.days<15}).length,prov=items.filter(isProvisionalCase).length;return `<tr class="click district-row" onclick="selectDistrictGroup('${String(name).replaceAll("'","\\'")}')"><td colspan="2"><b class="district-name">${esc(name)}</b><div class="district-summary"><span>${items.length} expediente(s)</span><span>${places.length} lugar(es)</span>${prov?`<span class="age-summary amber">${prov} provisional(es)</span>`:''}${rej?`<span>${rej} con causal(es)</span>`:''}${orange?`<span class="age-summary amber">${orange} >10 días hábiles</span>`:''}${red?`<span class="age-summary red">${red} ≥15 días hábiles</span>`:''}</div></td><td colspan="5"><span class="small">${esc(places.slice(0,5).join(' · ')||'Sin lugar registrado')}${places.length>5?' · …':''}</span></td><td><span class="pill blue">Abrir distrito</span></td><td></td></tr>`}).join(''):'<tr><td colspan="9" class="empty">Sin expedientes en proceso</td></tr>';
+   $('expBody').innerHTML=groups.length?groups.map(name=>{let items=active.filter(e=>(e.distrito||'Sin distrito')===name),places=[...new Set(items.map(e=>e.lugar).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')),rej=items.filter(e=>e.dictamen==='RECHAZADO').length,red=items.filter(e=>ageInfo(e).days>=15).length,orange=items.filter(e=>{let a=ageInfo(e);return a.days>10&&a.days<15}).length,prov=items.filter(isProvisionalCase).length;return `<tr class="click district-row" onclick="selectDistrictGroup('${String(name).replaceAll("'","\\'")}')"><td colspan="2"><b class="district-name">${esc(name)}</b><div class="district-summary"><span>${items.length} expediente(s)</span><span>${places.length} lugar(es)</span>${prov?`<span class="age-summary amber">${prov} provisional(es)</span>`:''}${rej?`<span>${rej} con causal(es)</span>`:''}${orange?`<span class="age-summary amber">${orange} >10 días hábiles</span>`:''}${red?`<span class="age-summary red">${red} ≥15 días hábiles</span>`:''}</div></td><td colspan="5"><span class="small">${esc(places.slice(0,5).join(' · ')||'Sin lugar registrado')}${places.length>5?' · …':''}</span></td><td><button class="btn primary compact-open-btn" onclick="event.stopPropagation();selectDistrictGroup('${String(name).replaceAll("'","\\'")}')">Ver expedientes</button></td><td></td></tr>`}).join(''):'<tr><td colspan="9" class="empty">Sin expedientes en proceso</td></tr>';
    return;
  }
- $('expBody').innerHTML=rows.length?rows.map(e=>{let age=ageInfo(e),prov=isProvisionalCase(e);return `<tr class="click ${age.rowClass||''}" onclick="openCase(${e.id})"><td><b>${esc(e.tramite||caseRef(e))}</b>${provisionalLabel(e)}<div class="small">${prov?'Se sustituirá al recibir el N.° de trámite real':'Trámite asignado'}</div></td><td>${esc(e.fecha||'Sin fecha')}<div><span class="pill ${age.className||'blue'} age-pill" title="Días hábiles: lunes a viernes, excluyendo feriados oficiales de Costa Rica">${esc(age.label)}</span></div></td><td><b>${esc(e.folio||'Sin folio')}</b><div class="small">${esc(e.plano||'')}</div>${sharedReferenceBadge(e,'folio')}</td><td>${esc(e.presentacion||e.asiento||'')}${sharedReferenceBadge(e,'presentacion')}</td><td>${esc(e.solicitante||'')}</td><td>${esc(e.distrito||'')}<div class="small">${esc(e.lugar||'')}</div></td><td>${statusPill(e)}</td><td><span class="pill ${e.dictamen==='RECHAZADO'?'red':e.dictamen==='APROBADO'?'green':'amber'}">${e.dictamen}</span></td><td><div class="row-actions">${prov?`<button class="btn primary" onclick="event.stopPropagation();assignTramite(${e.id})">Asignar trámite</button>`:''}<button class="btn" onclick="event.stopPropagation();deleteCase(${e.id})">Eliminar</button></div></td></tr>`}).join(''):'<tr><td colspan="9" class="empty">Sin resultados</td></tr>'
+ let backRow=groupFilter!==null?`<tr class="group-back-row"><td colspan="9"><button class="btn compact-back-btn" onclick="event.stopPropagation();closeDistrictGroup()">← Resumen</button><span class="small group-back-label"><b>${esc(groupFilter)}</b> · ${rows.length} expediente(s)</span></td></tr>`:'';
+ let body=rows.length?rows.map(e=>{let age=ageInfo(e),prov=isProvisionalCase(e);return `<tr class="click ${age.rowClass||''}" onclick="openCase(${e.id})"><td><b>${esc(e.tramite||caseRef(e))}</b>${provisionalLabel(e)}<div class="small">${prov?'Pendiente de N.° real':'Trámite asignado'}</div></td><td>${esc(e.fecha||'Sin fecha')}<div><span class="pill ${age.className||'blue'} age-pill">${esc(age.label)}</span></div></td><td><b>${esc(e.folio||'Sin folio')}</b><div class="small">${esc(e.plano||'')}</div>${sharedReferenceBadge(e,'folio')}</td><td>${esc(e.presentacion||e.asiento||'')}${sharedReferenceBadge(e,'presentacion')}</td><td>${esc(e.solicitante||'')}</td><td>${esc(e.distrito||'Sin distrito')}<div class="small">${esc(e.lugar||'')}</div></td><td>${statusPill(e)}</td><td><span class="pill ${e.dictamen==='RECHAZADO'?'red':e.dictamen==='APROBADO'?'green':'amber'}">${e.dictamen}</span></td><td><div class="row-actions">${prov?`<button class="btn primary" onclick="event.stopPropagation();assignTramite(${e.id})">Asignar</button>`:''}<button class="btn" onclick="event.stopPropagation();deleteCase(${e.id})">Eliminar</button></div></td></tr>`}).join(''):'<tr><td colspan="9" class="empty">Sin resultados</td></tr>';
+ $('expBody').innerHTML=backRow+body
 }
-function selectDistrictGroup(name){$('fDistrict').value=name==='Sin distrito'?'':name;let a=$('tramitesAccordion');if(a)a.open=true;renderTable()}
-function clearFilters(){$('fSearch').value='';$('fDistrict').value='';$('fPlace').value='';renderTable()}
+function selectDistrictGroup(name){
+ activeDistrictGroup=name;
+ $('fDistrict').value=name==='Sin distrito'?'':name;
+ let a=$('tramitesAccordion');if(a)a.open=true;
+ renderTable()
+}
+function closeDistrictGroup(){
+ activeDistrictGroup=null;
+ $('fDistrict').value='';
+ renderTable()
+}
+function clearFilters(){
+ $('fSearch').value='';$('fDistrict').value='';$('fPlace').value='';
+ activeDistrictGroup=null;
+ renderTable()
+}
 function toggleNew(){$('newCard').style.display=$('newCard').style.display==='none'?'block':'none'}
 function recordTramiteChange(e,from,to,source='Manual'){e.tramiteHistorial=Array.isArray(e.tramiteHistorial)?e.tramiteHistorial:[];if(from!==to)e.tramiteHistorial.push({anterior:from||'',nuevo:to||'',origen:source,fecha:new Date().toISOString()})}
 function assignTramite(id){let e=expedientes.find(x=>x.id===id);if(!e)return;let real=prompt(`Asignar N.° de trámite a ${e.tramite||caseRef(e)}\\nFolio: ${e.folio||'sin folio'}\\nPresentación: ${e.presentacion||e.asiento||'sin presentación'}`,'');if(real===null)return;real=real.trim();if(!real){alert('Ingrese un número de trámite.');return}if(isProvisionalTramiteValue(real)){alert('Ingrese el número de trámite real, no una referencia X.');return}let duplicate=expedientes.find(x=>x.id!==e.id&&!isProvisionalCase(x)&&idNorm(x.tramite)===idNorm(real));if(duplicate){alert(`El trámite ${real} ya está asignado a otro expediente.`);return}let old=e.tramite;recordTramiteChange(e,old,real,'Asignación manual');e.tramite=real;e.tramiteProvisional=false;persist();renderAll()}
@@ -219,5 +244,5 @@ function pdfRecord(text){let tramite=firstPdfMatch(text,[/\b(VMSDC\s*\d{4}\s*[-\
 async function importPdf(files){let stats=statsNew();stats.files=files.length;for(const f of files){try{let text=await pdfStrings(new Uint8Array(await f.arrayBuffer())),r=pdfRecord(text);if(!hasIdentifier(mapHeaders(r))){stats.skipped++;stats.warnings.push(`${f.name}: PDF sin texto identificable de trámite, folio o presentación`);continue}statsAdd(stats,upsertImported(r,{name:f.name,type:'PDF'}))}catch(err){console.error(err);stats.skipped++;stats.warnings.push(`${f.name}: ${err.message}`)}}importDone(stats,'PDF')}
 $('fileJson').onchange=e=>importJson([...e.target.files]);$('fileExcel').onchange=e=>importExcel([...e.target.files]);$('filePdf').onchange=e=>importPdf([...e.target.files]);
 
-window.CVISADOS_DIAGNOSTICO={version:APP_VERSION,storage:STORAGE,getExpedientes:()=>structuredClone(expedientes),go,caseRef,mapHeaders,upsertImported,findIdentifierMatches,isProvisionalCase,nextProvisionalTramite,pickProvisionalCandidate,assignTramite,jsonImportRows,parseXlsx,pdfRecord,pdfStrings,importExcel,importJson,importPdf,ageInfo,catalogSearchScore,reset:()=>{expedientes=[];persist();renderAll()},save:()=>{persist();renderAll()}};
+window.CVISADOS_DIAGNOSTICO={version:APP_VERSION,storage:STORAGE,getExpedientes:()=>structuredClone(expedientes),go,caseRef,mapHeaders,upsertImported,findIdentifierMatches,isProvisionalCase,nextProvisionalTramite,pickProvisionalCandidate,assignTramite,selectDistrictGroup,closeDistrictGroup,jsonImportRows,parseXlsx,pdfRecord,pdfStrings,importExcel,importJson,importPdf,ageInfo,catalogSearchScore,reset:()=>{expedientes=[];persist();renderAll()},save:()=>{persist();renderAll()}};
 renderAll();

@@ -1,4 +1,4 @@
-const VERSION='3.4.0';
+const VERSION='3.4.1';
 const CACHE='c-visados-'+VERSION;
 const CORE=[
   './',
