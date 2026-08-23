@@ -1,0 +1,21 @@
+C-VISADOS 3.3.0 — IMPORTACIÓN Y ENLACE DE EXPEDIENTES
+
+CAMBIOS
+- Registro manual permite crear expediente con N.° trámite, folio real O presentación/asiento.
+- Excel/CSV reconoce encabezados aunque no estén en la primera fila y revisa todas las hojas XLSX.
+- Excel/CSV crea expedientes sin número de trámite cuando existe folio o presentación/asiento.
+- JSON reconoce estructuras anidadas y enlaza por trámite, folio o presentación/asiento.
+- PDF de texto busca trámite, folio y presentación/asiento; ya no exige VMSDC para crear un expediente.
+- Si una carga posterior aporta el número de trámite para un folio ya existente, completa el mismo expediente.
+- Si una carga aporta el folio para un trámite existente, completa el mismo expediente.
+- Los archivos importados se registran por nombre/tipo como procedencia del enlace, sin guardar el archivo binario en localStorage.
+- Coincidencias contradictorias no se fusionan automáticamente; se reportan como conflicto.
+- Un Excel de base de Calificación se reconoce como tal y no se convierte erróneamente en expedientes.
+- Las listas muestran Folio o Presentación como referencia cuando el expediente aún no posee N.° de trámite.
+
+NO SE MODIFICÓ
+- Requisitos.
+- Catálogo de Calificación.
+- Lógica de Precalificación, Inspección, Calificación o Resoluciones.
+- Machotes oficiales.
+- EXT 2029.

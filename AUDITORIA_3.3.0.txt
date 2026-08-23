@@ -1,0 +1,103 @@
+C-VISADOS 3.3.0 — AUDITORÍA FINAL
+
+OBJETIVO
+Corregir creación/importación de expedientes cuando no existe N.° de trámite y enlazar Excel/CSV, JSON y PDF mediante N.° de trámite, folio real o presentación/asiento.
+
+REGLAS IMPLEMENTADAS
+- Un expediente puede nacer con trámite, folio O presentación/asiento.
+- Cargas posteriores completan y enlazan identificadores del mismo expediente.
+- Coincidencias contradictorias se reportan y no se fusionan automáticamente.
+- JSON anidado, XLSX de múltiples hojas y PDF de texto son reconocidos.
+- XLSX detecta encabezados fuera de la primera fila y XML con namespaces.
+- PDF de texto soporta streams sin filtro, FlateDecode y ASCII85Decode + FlateDecode.
+- PDF escaneado/sin texto no usa OCR ni inventa identificadores.
+
+PROTECCIÓN DE REGRESIÓN
+- Requisitos 32 y catálogo 24 sin cambios.
+- Machotes, CSS y js/data.js idénticos a 3.2.0 por SHA-256.
+- Storage local compatible con versiones anteriores.
+
+PRUEBAS FUNCIONALES DE LÓGICA: 35/35 correctas.
+CONTROLES TÉCNICOS/ESTRUCTURA: 78/78 correctos.
+
+[OK] Sintaxis js/data.js
+[OK] Sintaxis js/app.js
+[OK] Sintaxis sw.js
+[OK] 32 requisitos — 32
+[OK] 24 causales — 24
+[OK] Protegido intacto assets/templates/APROBACION_BASE_2029.png
+[OK] Protegido intacto assets/templates/HEADER_2029.png
+[OK] Protegido intacto assets/templates/BUSINESS_CARD_2029.png
+[OK] Protegido intacto data/requisitos.json
+[OK] Protegido intacto data/catalogo_rechazos.json
+[OK] Protegido intacto css/app.css
+[OK] Protegido intacto js/data.js
+[OK] Versión 3.3.0
+[OK] Registro acepta folio/presentación
+[OK] Excel todas hojas
+[OK] Excel namespaces XML
+[OK] JSON anidado
+[OK] PDF decode ASCII85/Flate
+[OK] PDF folio/presentación sin trámite
+[OK] Enlace por identificadores
+[OK] Protección de conflictos
+[OK] Procedencia de archivo
+[OK] Referencia sin trámite
+[OK] Búsqueda incluye presentación
+[OK] Módulo tramites
+[OK] Módulo pre
+[OK] Módulo inspection
+[OK] Módulo calificacion
+[OK] Módulo cierre
+[OK] Aprobación oficial
+[OK] Rechazo oficial
+[OK] EXT 2029
+[OK] Storage compatible
+[OK] Manifest start_url
+[OK] Manifest scope
+[OK] Manifest standalone
+[OK] Icono 192
+[OK] Icono 512
+[OK] Cache 3.3.0
+[OK] .nojekyll
+[OK] SW CORE encontrado
+[OK] Recurso PWA index.html
+[OK] Recurso PWA css/app.css
+[OK] Recurso PWA js/data.js
+[OK] Recurso PWA js/app.js
+[OK] Recurso PWA manifest.webmanifest
+[OK] Recurso PWA assets/icon-192.png
+[OK] Recurso PWA assets/icon-512.png
+[OK] Recurso PWA assets/c-visados-app.png
+[OK] Recurso PWA assets/escudo.png
+[OK] Recurso PWA assets/sarapiqui.png
+[OK] Recurso PWA assets/templates/APROBACION_BASE_2029.png
+[OK] Recurso PWA assets/templates/HEADER_2029.png
+[OK] Recurso PWA assets/templates/BUSINESS_CARD_2029.png
+[OK] Recurso PWA data/requisitos.json
+[OK] Recurso PWA data/catalogo_rechazos.json
+[OK] Sin BAT
+[OK] Sin PS1
+[OK] Sin EXE
+[OK] Sin MSI
+[OK] Suite funcional JS
+[OK] 35 pruebas funcionales — 35
+[OK] Excel de Calificación reconocido en suite
+[OK] ImportExcel handler probado
+[OK] ImportJson handler probado
+[OK] ImportPdf handler probado
+[OK] ZIP íntegro
+[OK] ZIP raíz index.html
+[OK] ZIP raíz manifest.webmanifest
+[OK] ZIP raíz sw.js
+[OK] ZIP raíz .nojekyll
+[OK] ZIP raíz css/app.css
+[OK] ZIP raíz js/app.js
+[OK] ZIP raíz js/data.js
+[OK] ZIP raíz data/requisitos.json
+[OK] ZIP raíz data/catalogo_rechazos.json
+[OK] ZIP raíz AUDITORIA_3.3.0.txt
+[OK] ZIP raíz PRUEBAS_FUNCIONALES_3.3.0.txt
+
+LIMITACIÓN TRANSPARENTE
+Chromium headless del entorno no finaliza de forma fiable la navegación local. No se afirma una prueba visual interactiva completa. La suite funcional ejecutó el JavaScript real en Node con DOM simulado y procesó XLSX/PDF reales.

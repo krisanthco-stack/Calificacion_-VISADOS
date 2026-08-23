@@ -1,4 +1,4 @@
-const CACHE='c-visados-3.2.0';
+const CACHE='c-visados-3.3.0';
 const CORE=[
  './','./index.html','./css/app.css','./js/data.js','./js/app.js','./manifest.webmanifest',
  './assets/icon-192.png','./assets/icon-512.png','./assets/c-visados-app.png','./assets/escudo.png','./assets/sarapiqui.png',

@@ -1,18 +1,10 @@
-C-VISADOS 3.2.0 — PUBLICACIÓN EN GITHUB PAGES
+C-VISADOS 3.3.0 — GITHUB PAGES
 
-1. Descomprima C_VISADOS_REPOSITORIO_3.2.0.zip.
-2. Suba EL CONTENIDO del ZIP a la raíz del repositorio; no suba el ZIP como un único archivo.
-3. En la raíz deben verse directamente:
-   index.html
-   manifest.webmanifest
-   sw.js
-   .nojekyll
-   css/
-   js/
-   data/
-   assets/
+1. Descomprima el ZIP.
+2. Suba TODO el contenido descomprimido a la raíz del repositorio.
+3. Deben verse directamente en la raíz: index.html, manifest.webmanifest, sw.js, css/, js/, data/, assets/.
 4. Settings > Pages > Deploy from a branch > main > / (root).
-5. Abra la URL HTTPS de GitHub Pages y recargue una vez para recibir la nueva caché 3.2.0.
-6. Instale desde C-VISADOS o desde el menú de Edge/Chrome.
+5. Abra la URL HTTPS de GitHub Pages.
+6. Para PWA, use Edge/Chrome y la opción Instalar C-VISADOS.
 
-No contiene BAT, PowerShell, EXE ni MSI.
+No suba solamente el ZIP y no coloque todo dentro de una carpeta adicional.

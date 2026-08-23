@@ -1,0 +1,38 @@
+OK version 3.3.0
+OK folio-only creates expediente
+OK folio-only stored without invented tramite
+OK folio-only has display reference
+OK same folio + new tramite updates existing expediente
+OK tramite linked to existing folio
+OK nonempty imported fields update matched expediente
+OK presentation links by same tramite
+OK presentation stored on linked expediente
+OK presentation-only creates expediente
+OK presentation-only stored without invented tramite
+OK nested JSON record recognized
+OK nested JSON identifiers mapped
+OK PDF labeled identifiers recognized
+OK contradictory tramite on same folio is not auto-merged
+OK separate partial records can exist before bridge identifier arrives
+OK bridge record links compatible tramite-only and folio-only records
+OK merged bridge preserves both identifiers
+OK import provenance preserved across linked records
+OK manual folio-only creation works
+OK XLSX scans all worksheets
+PARSED {"rows":[{"Fecha":"2026-08-01","Folio Real":"4-00227671-000","N.º Presentación":"","Solicitante":"Persona Folio","Distrito":"Horquetas","Lugar":"Centro"},{"Fecha":"2026-08-02","Folio Real":"","N.º Presentación":"2026-62146","Solicitante":"Persona Presentación","Distrito":"Puerto Viejo","Lugar":"Centro"},{"Fecha":"2026-08-03","Folio Real":"4-00999999-000","N.º Presentación":"2026-70000","Solicitante":"Persona Enlace","Distrito":"La Virgen","Lugar":"Barrio"},{"Número de trámite":"VMSDC 2026-16231","Folio":"4-00227671-000","Presentación":"","Solicitante":"Persona Folio Actualizada"},{"Número de trámite":"VMSDC 2026-17000","Folio":"4-00999999-000","Presentación":"2026-70000","Solicitante":"Persona Enlace Actualizada"}],"catalogRows":0,"detectedSheets":2,"totalSheets":2}
+OK XLSX detects header rows and 5 data records across sheets
+OK XLSX links updates instead of duplicating folio records
+OK XLSX later sheet links tramite to prior folio
+OK XLSX presentation-only expediente created
+OK XLSX folio+presentation updated with later tramite
+OK actual compressed PDF text stream identifiers extracted
+OK uploaded calibration workbook recognized as catalog, not expediente rows
+OK importExcel handler creates/links expedientes
+OK importJson handler links tramite to existing folio
+OK importPdf handler creates linked expediente from actual PDF
+OK inspection width match regression
+OK inspection width difference regression
+OK calification similar-code search ACP-FCU regression
+OK business-day aging calculation regression
+ALL_TESTS_OK
+
