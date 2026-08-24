@@ -433,3 +433,14 @@ tr.aging-red:hover td{background:#fde3df}
     margin-top:2px;
   }
 }
+
+/* C-VISADOS 3.4.2 · Observaciones del catálogo de rechazo */
+.selected-reason{margin:5px 0;padding:6px 8px;border:1px solid var(--border);border-radius:7px;background:#fff}
+.selected-observation{margin-top:4px;padding:4px 6px;border-left:3px solid #b7791f;background:#fff8e8;font-size:9.5px;line-height:1.3}
+.obs-line{margin:0 0 1.3mm;line-height:1.35}
+.obs-line:last-child{margin-bottom:0}
+
+/* C-VISADOS 3.6.0 FINAL */
+.aging-yellow{background:#fff8d8!important}.pill.yellow,.yellow{background:#fff0a6!important;color:#6d5200!important;border-color:#e5c958!important}
+.module-next{display:flex;justify-content:flex-end;margin:7px 0 0}.next-btn{min-width:92px}.gestion-filters{display:grid;grid-template-columns:1.3fr .8fr .8fr .8fr auto auto auto;gap:6px;align-items:end}.gestion-table{min-width:1180px}.gestion-table tr.click.selected{outline:2px solid #1f6cab;outline-offset:-2px}.gestion-next{align-items:center;gap:10px}.gestion-next .small{margin-right:auto}.office-actions{gap:5px;flex-wrap:wrap}.field.span2{grid-column:span 2}
+@media(max-width:1000px){.gestion-filters{grid-template-columns:1fr 1fr}.gestion-filters .btn{width:100%}}

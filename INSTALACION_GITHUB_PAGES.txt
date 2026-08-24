@@ -1,7 +1,7 @@
-C-VISADOS 3.4.0 — GITHUB PAGES
+C-VISADOS 3.6.0 FINAL — GITHUB PAGES
 
-1. Descomprima C_VISADOS_REPOSITORIO_3.4.0.zip.
-2. Suba TODO el contenido directamente a la raíz del repositorio.
+1. Descomprima C_VISADOS_REPOSITORIO_FINAL_3.6.0.zip.
+2. Suba TODO el contenido directamente a la raíz del repositorio GitHub.
 3. Settings > Pages:
    Source: Deploy from a branch
    Branch: main
@@ -18,5 +18,10 @@ css/
 js/
 data/
 assets/
+
+MACHOTES DEFINITIVOS
+- assets/templates/MACHOTE_APROBACION_DEFINITIVO.docx
+- assets/templates/MACHOTE_RECHAZO_DEFINITIVO.docx
+Los dos archivos se conservan byte por byte como fueron cargados.
 
 No contiene BAT, PowerShell, EXE ni MSI.

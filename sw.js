@@ -1,4 +1,4 @@
-const VERSION='3.4.1';
+const VERSION='3.6.0';
 const CACHE='c-visados-'+VERSION;
 const CORE=[
   './',
@@ -7,6 +7,7 @@ const CORE=[
   './js/pwa.js',
   './js/data.js',
   './js/app.js',
+  './js/exporters.js',
   './manifest.webmanifest',
   './assets/icon-192.png',
   './assets/icon-512.png',
@@ -20,6 +21,10 @@ const OPTIONAL=[
   './assets/templates/APROBACION_BASE_2029.png',
   './assets/templates/HEADER_2029.png',
   './assets/templates/BUSINESS_CARD_2029.png',
+  './assets/templates/OFICIAL_APROBACION_FONDO.png',
+  './assets/templates/OFICIAL_RECHAZO_FONDO.png',
+  './assets/templates/MACHOTE_APROBACION_DEFINITIVO.docx',
+  './assets/templates/MACHOTE_RECHAZO_DEFINITIVO.docx',
   './data/requisitos.json',
   './data/catalogo_rechazos.json'
 ];

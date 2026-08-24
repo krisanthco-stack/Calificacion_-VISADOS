@@ -1,0 +1,12 @@
+{
+  "version": "3.6.0",
+  "aprobacion": {
+    "archivo": "MACHOTE_APROBACION_DEFINITIVO.docx",
+    "sha256": "a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93"
+  },
+  "rechazo": {
+    "archivo": "MACHOTE_RECHAZO_DEFINITIVO.docx",
+    "sha256": "c8276bdd3fa89a0ff248565a85d0f7e92f9c9fb1e3404d38e0fa4ad9e6dc6337"
+  },
+  "nota": "Los DOCX originales se conservan byte por byte; la aplicación genera copias variables en memoria."
+}

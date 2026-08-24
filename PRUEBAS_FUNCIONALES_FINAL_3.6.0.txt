@@ -1,0 +1,62 @@
+C-VISADOS 3.6.0 FINAL — PRUEBAS FUNCIONALES
+
+PRUEBA ESTRUCTURAL:
+PASS
+
+PRUEBA MACHOTES ESTRICTOS:
+PASS
+
+PRUEBA VISUAL / GENERACIÓN:
+PASS
+
+PRUEBA FUNCIONAL EN CHROMIUM (set_content por bloqueo administrativo de localhost):
+RESULT 27 / 27
+OK version 
+OK gestion module 
+OK single presentation 
+OK presentation parser 
+OK yellow alert — {'days': 13, 'className': 'yellow', 'rowClass': 'aging-yellow', 'label': '13 días hábiles'}
+OK red alert — {'days': 23, 'className': 'red', 'rowClass': 'aging-red', 'label': '23 días hábiles'}
+OK DRH MENOR 
+OK next persists observation — Precalificación: datos guardados y avance registrado.
+OK next navigates 
+OK gestion rows — 3
+OK two observations numbered 
+OK two reasons both columns numbered 
+OK zip creates case 
+OK zip links attachment — [{'clave': 'carga.zip|VMSDC_2026-90001_expediente.json', 'nombre': 'VMSDC_2026-90001_expediente.json', 'tipo': 'JSON', 'tamano': 110, 'origenZip': 'carga.zip', 'identificadores': {'tramite': 'VMSDC 2026-90001', 'folio': '', 'presentacion': 
+OK json-compatible full data 
+OK no page errors 
+OK aprobacion docx generated — 1674291
+OK approval presentation split — ulos 103 del Reglamento General del Registro Inmobiliario, 33 y 34 de la Ley de Planificación Urbana.
+
+Sin más por el momento, me despido.
+	
+Atentamente;
+
+
+
+Fecha:
+23 de agosto del 2026
+Trámite:
+MS-VDCT-10-2026
+● ASUNTO:  VISADO MUNICIPAL ●
+OK rechazo docx generated — 1658123
+OK one rejection office — 1
+OK rejection multiple numbered — 
+
+
+
+
+OBSERVACIONES
+
+1. NO cumple con la normativa vigente_ Relacio frente fondo
+2. Aportar disponibilidad de agua, o indicar nota según articulo 13.
+
+NOTA: EL TRÁMITE QUEDA SUJETO A NUEVA INSPECCIÓN, UNA VEZ SUBSANADOS LOS DEFECTOS INDICADO
+OK isolated colon removed 
+OK aprobacion standard pdf — 342272
+OK aprobacion editable pdf — 343271
+OK rechazo standard pdf — 589339
+OK rechazo editable pdf — 590338
+OK gestion xlsx valid zip 

@@ -1,7 +1,7 @@
 (() => {
 'use strict';
 
-const PWA_VERSION = '3.4.1';
+const PWA_VERSION = '3.6.0';
 const CACHE_PREFIX = 'c-visados-';
 const $id = id => document.getElementById(id);
 

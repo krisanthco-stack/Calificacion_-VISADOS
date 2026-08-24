@@ -29,7 +29,12 @@
       "Reglamento a la Ley del Catastro Nacional"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "No grafica la servisumbre , dentro delcplano."
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "IV-M7L",
@@ -63,7 +68,12 @@
     "aliases_busqueda": [
       "visado invu",
       "invu"
-    ]
+    ],
+    "observaciones_excel": [
+      "Aportar visado del INVU._ Segregacion con fines urbanisticos"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "DRH",
@@ -93,7 +103,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "Aportar disponibilidad de agua, o indicar nota según articulo 13."
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "MAS DEL 10%",
@@ -123,7 +138,12 @@
       "Ley del Catastro Nacional N.° 6545"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "ACALRAR, SEGREGACION EXCEDE EL 10% PARA RECTIFICACION"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "AFCU",
@@ -158,7 +178,12 @@
       "acceso excepcional",
       "servidumbre de paso",
       "servidumbre de paso acceso excepcional"
-    ]
+    ],
+    "observaciones_excel": [
+      "Aceeso excepcional no procede"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "AP-FCU",
@@ -194,7 +219,12 @@
       "callejón de acceso",
       "callejon de acceso",
       "acceso al predio callejón de acceso"
-    ]
+    ],
+    "observaciones_excel": [
+      "ACCESO AL PREDIO NO SE AJUSTA A LA  NORMATIVA VIGENTE"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "AP-NCN",
@@ -230,7 +260,12 @@
       "callejón de acceso",
       "callejon de acceso",
       "acceso al predio callejón de acceso"
-    ]
+    ],
+    "observaciones_excel": [
+      "ACCESO AL PREDIO NO SE AJUSTA A LA  NORMATIVA VIGENTE"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "NCRFF",
@@ -260,7 +295,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "NO cumple con la normativa vigente_ Relacio frente fondo"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "MSD",
@@ -292,7 +332,12 @@
       "Normativa institucional"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "Debe presentar la Minuta si defectos"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "LCExc",
@@ -322,7 +367,12 @@
       "Reglamento a la Ley del Catastro Nacional"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "ACCESO INDICADO DE CALE PUBLICA , NO CORRESPONDE."
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "Vis- INC",
@@ -352,7 +402,12 @@
       "Reglamento sobre derechos de vía ferroviarios"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "PRESNTR ALINEAMINTO DE INCOFER"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "DR-004",
@@ -382,7 +437,12 @@
       "Directriz DRI-004-2023"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "SEGÚN TIPO DE ACCESO FALTA INDICAR NOTA CORRESPONDIENTE."
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "AN CP",
@@ -414,7 +474,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "EL ACCESO NO ES CALLE PUBLICA"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "ADP",
@@ -444,7 +509,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "EL ACCESO DEBE EST"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "FE(RFSS)",
@@ -481,7 +551,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "PRESENTA FONDO ENCLAVADO"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "VIS- INVU",
@@ -516,7 +591,12 @@
       "visado invu",
       "invu",
       "visado acceso excepcional"
-    ]
+    ],
+    "observaciones_excel": [
+      "Aportar Visado del INVU._ Acceso Excepcional"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "I-CC",
@@ -580,7 +660,12 @@
     "aliases_busqueda": [
       "servidumbre de paso",
       "acceso por servidumbre"
-    ]
+    ],
+    "observaciones_excel": [
+      "EL ACCESO INDICADO NO ESTAS CONTEMPLADO COMO PUBLICO."
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "CQ01",
@@ -610,7 +695,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "Corregir corouis_ imcompleto"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "CNP-SP-IP",
@@ -647,7 +737,12 @@
       "servidumbre de paso",
       "acceso por servidumbre",
       "servidumbre de paso acceso excepcional"
-    ]
+    ],
+    "observaciones_excel": [
+      "El acceso indicado no esta normado como calle publica"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "RF. NRFF / RF_NCFM",
@@ -677,7 +772,12 @@
       "Reglamento de Fraccionamiento y Urbanizaciones"
     ],
     "archivo_fuente_actualizacion": "datos para reicio aprobacion o rechazo(1).xlsx",
-    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e"
+    "sha256_fuente_actualizacion": "bc4a188817e9773157caa1744d8815c54ee514c5a2564a85ea695c91477d8b4e",
+    "observaciones_excel": [
+      "NO CUMPLE CONLA NORMATIVA VIGENTE_ REALCION FRENTE FONDO"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "ACDT",
@@ -693,7 +793,12 @@
       "Fundamento legal breve; revisar antes de emitir resolución"
     ],
     "archivo_fuente": "BASE_DE_DATOS.xlsx",
-    "sha256_fuente": "eeb558089eff269dd299e7e21b821e8e701e0bd89b7414dbee1a9cb794d089a5"
+    "sha256_fuente": "eeb558089eff269dd299e7e21b821e8e701e0bd89b7414dbee1a9cb794d089a5",
+    "observaciones_excel": [
+      "EL ANCHO DE CALLE  DIFIERE DEL TITULO"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "EXCEDE_10_PERMITIDO",
@@ -721,7 +826,12 @@
     ],
     "normas_excel": [
       "Ley de Informaciones Posesorias"
-    ]
+    ],
+    "observaciones_excel": [
+      "NO cumple con la normativa vigente_ Relacio frente fondo"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   },
   {
     "codigo": "NCFM",
@@ -751,6 +861,11 @@
     ],
     "normas_excel": [
       "Reglamento de Fraccionamiento y Urbanizaciones"
-    ]
+    ],
+    "observaciones_excel": [
+      "NO CUMPLE CONLA NORMATIVA VIGENTE_ frente minimo"
+    ],
+    "archivo_fuente_observaciones": "datos para reicio aprobacion o rechazo(2).xlsx",
+    "sha256_fuente_observaciones": "11f79331e3d89d916d58578f2f0b9b2ee1f1a6b317098339fa5d2248f9633202"
   }
 ]

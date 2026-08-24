@@ -1,0 +1,30 @@
+C-VISADOS 3.6.0 FINAL — AUDITORÍA DE ENTREGA
+
+MACHOTES DEFINITIVOS
+[OK] Aprobación fuente SHA-256: a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93
+[OK] Aprobación incluida SHA-256: a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93
+[OK] Rechazo fuente SHA-256: c8276bdd3fa89a0ff248565a85d0f7e92f9c9fb1e3404d38e0fa4ad9e6dc6337
+[OK] Rechazo incluido SHA-256: c8276bdd3fa89a0ff248565a85d0f7e92f9c9fb1e3404d38e0fa4ad9e6dc6337
+[OK] Los dos pares son byte por byte idénticos.
+[OK] El exportador no sustituye imágenes internas de los DOCX.
+[OK] OFICIO NÚMERO se conserva como elemento estático del machote.
+
+VERIFICACIONES
+[OK] JavaScript: app.js, data.js, exporters.js, pwa.js y sw.js sin errores de sintaxis.
+[OK] Prueba estructural final: PASS.
+[OK] Prueba estricta de machotes: PASS.
+[OK] Regresión visual: PASS.
+[OK] Prueba funcional Chromium: 27/27.
+[OK] Word aprobación: una página renderizada y revisada visualmente.
+[OK] Word rechazo: una página renderizada y revisada visualmente.
+[OK] PDF aprobación: una página renderizada y revisada visualmente.
+[OK] PDF rechazo con varios motivos: una página renderizada y revisada visualmente.
+[OK] PDF editable contiene AcroForm/widgets según prueba funcional.
+[OK] Excel Gestión generado como XLSX válido.
+[OK] Respaldo JSON conserva estructura completa de expedientes.
+[OK] ZIP de ingreso crea/vincula expediente y adjunto en prueba funcional.
+[OK] No hay BAT, PowerShell, EXE ni MSI.
+[OK] Estructura GitHub Pages en raíz.
+
+NOTA DE ENTORNO
+El acceso de Chromium a http://127.0.0.1 fue bloqueado por política administrativa del entorno. La batería funcional se ejecutó en Chromium mediante set_content con los recursos locales inyectados; no se afirma una prueba de despliegue HTTPS real desde este entorno.

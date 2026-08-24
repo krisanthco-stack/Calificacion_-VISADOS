@@ -1,0 +1,19 @@
+C-VISADOS 3.6.0 FINAL
+
+REGLA DOCUMENTAL APLICADA
+- Se usan exclusivamente los dos machotes definitivos cargados por el usuario.
+- Los DOCX fuente no se modifican ni se rediseñan.
+- El motor genera copias variables en memoria para cada expediente.
+- No se sustituyen imágenes, logotipos, tarjeta, encabezado, pie ni estructura estática del machote.
+
+FUNCIONES INTEGRADAS
+- Botón Siguiente con persistencia y observación automática por módulo.
+- Campo único Presentación; AÑO-ASIENTO-C se separa a TOMO y ASIENTO al emitir oficio.
+- Módulo Gestión global con filtros, Excel y respaldo JSON.
+- Alertas por antigüedad: amarillo y rojo.
+- Oficios en Word, PDF y PDF editable.
+- Carga ZIP y vinculación automática de archivos al expediente.
+- Observaciones del catálogo Excel incorporadas a Calificación y a la minuta de rechazo.
+- Varios motivos generan un único oficio; observaciones, motivaciones y fundamentos se numeran correlativamente.
+- Se elimina el carácter “:” aislado debajo de Fecha/Trámite al generar la minuta de rechazo, sin alterar el machote fuente.
+- DRH usa la redacción solicitada: área MENOR de 900 m².
