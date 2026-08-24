@@ -1,0 +1,16 @@
+C-VISADOS 3.6.1 - PRUEBAS FUNCIONALES
+
+1. Rechazo con 6 motivos extensos generado con el JavaScript real de js/exporters.js.
+   Resultado: 3 páginas Carta; ninguna fila se parte ni se superpone.
+2. DOCX con 6 motivos generado con el motor real.
+   Resultado: tabla con 1 cabecera + 6 filas; cada fila contiene w:cantSplit; render de 3 páginas limpio.
+3. Rechazo corto con 1 motivo.
+   Resultado: 1 página Carta.
+4. Aprobación.
+   Resultado: 1 página, usando el machote definitivo de aprobación.
+5. Fecha del oficio.
+   Resultado: se captura automáticamente al guardar o avanzar desde Calificación si todavía no existe fecha de oficio.
+6. Navegación.
+   Resultado: un único botón Siguiente por módulo; no se duplicaron controles.
+7. Plantillas.
+   Resultado: SHA-256 idéntico a los dos DOCX cargados por el usuario.

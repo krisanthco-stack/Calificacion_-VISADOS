@@ -1,0 +1,39 @@
+C-VISADOS 3.6.2 — PRUEBAS FINALES
+
+Ejecución fresca realizada antes del empaquetado final.
+
+1. Auditoría automatizada final: 67/67 controles correctos.
+2. Sintaxis JavaScript verificada con node --check:
+   - js/app.js
+   - js/exporters.js
+   - js/pwa.js
+   - js/data.js
+   - sw.js
+3. Machote de rechazo:
+   - Tamaño Carta 8.5 x 11 pulgadas.
+   - Sin texto/WordArt "MUESTRA - VISTA PREVIA".
+   - Sin objeto detrás del documento asociado a la marca de agua.
+   - Rótulos superiores "Fecha" y "Trámite" sin dos puntos.
+4. Fondo de rechazo:
+   - Relación de gris tipo trama medida: 1.1379%, debajo del umbral de 2% usado en la auditoría.
+5. Flujo adaptable:
+   - Fila por motivo.
+   - Filas Word con cantSplit.
+   - Cierre con posición vertical dinámica.
+   - PDF de rechazo en 612 x 792 pt (Carta).
+6. Estrés de motivos:
+   - 1 motivo: 1 página, separación cierre 24 px.
+   - 3 motivos: 2 páginas, separación cierre 40 px.
+   - 6 motivos: 2 páginas, separación cierre 40 px.
+   - 10 motivos: 2 páginas, separación cierre 24 px.
+   - 15 motivos: 3 páginas, separación cierre 40 px.
+7. PDFs reales de QA comprobados:
+   - 1 motivo: 1 página Carta.
+   - 6 motivos: 2 páginas Carta.
+   - 15 motivos: 3 páginas Carta.
+8. Fecha automática de oficio al guardar Calificación: conservada.
+9. Seis botones Siguiente existentes: conservados, sin duplicación.
+10. Estructura GitHub Pages y ausencia de BAT/PS1/EXE/MSI: verificadas.
+
+Nota de entorno:
+El navegador Chromium del entorno no permitió cargar la aplicación desde localhost en la comprobación smoke adicional. No se utilizó ese intento como evidencia de aprobación. La validación final se basa en la batería automatizada, sintaxis, estructura documental y artefactos PDF/Word generados y auditados.

@@ -1,13 +1,13 @@
-C-VISADOS 3.6.0 FINAL — GITHUB PAGES
+C-VISADOS 3.6.2 — INSTALACIÓN EN GITHUB PAGES
 
-1. Descomprima C_VISADOS_REPOSITORIO_FINAL_3.6.0.zip.
+1. Descomprima el ZIP.
 2. Suba TODO el contenido directamente a la raíz del repositorio GitHub.
-3. Settings > Pages:
-   Source: Deploy from a branch
-   Branch: main
-   Folder: / (root)
-4. Abra la URL HTTPS publicada por GitHub Pages.
-5. Si una instalación PWA anterior queda en caché, use “Revisar instalación” > “Reparar y recargar”.
+3. En GitHub: Settings > Pages.
+4. Source: Deploy from a branch.
+5. Branch: main.
+6. Folder: / (root).
+7. Espere la publicación y abra la URL HTTPS.
+8. Si continúa cargándose una PWA anterior, use en C-VISADOS: Revisar instalación > Reparar y recargar.
 
 La raíz debe contener directamente:
 index.html
@@ -19,9 +19,4 @@ js/
 data/
 assets/
 
-MACHOTES DEFINITIVOS
-- assets/templates/MACHOTE_APROBACION_DEFINITIVO.docx
-- assets/templates/MACHOTE_RECHAZO_DEFINITIVO.docx
-Los dos archivos se conservan byte por byte como fueron cargados.
-
-No contiene BAT, PowerShell, EXE ni MSI.
+No subir el ZIP como único archivo ni crear una carpeta adicional alrededor del contenido.

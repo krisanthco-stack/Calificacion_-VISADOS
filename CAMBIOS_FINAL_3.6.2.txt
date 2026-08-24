@@ -1,0 +1,16 @@
+C-VISADOS 3.6.2 — CORRECCIÓN FINAL DE MINUTA DE RECHAZO
+
+Cambios aplicados exclusivamente a la salida/documento de RECHAZO:
+- Eliminado del machote de rechazo el WordArt "MUESTRA - VISTA PREVIA" que producía la trama gris diagonal.
+- Eliminados los dos puntos de los rótulos superiores Fecha y Trámite del machote de rechazo.
+- Conservado tamaño Carta 8.5 x 11 pulgadas para machote y PDF de rechazo.
+- Tabla de MOTIVACIÓN TÉCNICA / FUNDAMENTO JURÍDICO adaptable al contenido.
+- Cada motivo se maneja como una fila independiente e indivisible.
+- Si una fila completa no cabe, continúa completa en la página siguiente.
+- Un expediente con varios motivos genera un solo oficio multipágina.
+- El bloque de cierre se coloca inmediatamente después del contenido cuando cabe; se evita el gran espacio blanco artificial.
+- Firma y recibo se mantienen como bloque de cierre y no se cortan entre páginas.
+- Se conserva numeración correlativa de Observaciones, Motivación técnica y Fundamento jurídico.
+- La fecha del oficio se guarda automáticamente al guardar/finalizar Calificación si aún no existe.
+
+No se modificaron requisitos, catálogo, lógica de importación, Gestión, Trámites, Precalificación, Inspección ni el machote definitivo de APROBACIÓN.

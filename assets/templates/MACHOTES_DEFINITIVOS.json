@@ -1,12 +1,14 @@
 {
-  "version": "3.6.0",
+  "version": "3.6.2",
   "aprobacion": {
     "archivo": "MACHOTE_APROBACION_DEFINITIVO.docx",
-    "sha256": "a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93"
+    "sha256": "a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93",
+    "estado": "Sin cambios respecto del machote definitivo cargado."
   },
   "rechazo": {
     "archivo": "MACHOTE_RECHAZO_DEFINITIVO.docx",
-    "sha256": "c8276bdd3fa89a0ff248565a85d0f7e92f9c9fb1e3404d38e0fa4ad9e6dc6337"
+    "sha256": "0fa02b9466f91e97d2ab30f29ba867b5cb3c651d8a111a750a47e2568d791de4",
+    "estado": "Corregido por instrucción expresa: removida la marca MUESTRA - VISTA PREVIA y eliminados los dos puntos de Fecha/Trámite. Diseño institucional restante conservado."
   },
-  "nota": "Los DOCX originales se conservan byte por byte; la aplicación genera copias variables en memoria."
+  "nota": "C-VISADOS 3.6.2 usa salida adaptable tamaño Carta para rechazo; el contenido variable fluye sin superposición y el bloque de firma/recibo se mueve completo."
 }

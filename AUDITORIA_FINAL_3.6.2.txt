@@ -1,0 +1,36 @@
+C-VISADOS 3.6.2 — AUDITORÍA FINAL
+
+RESULTADO AUTOMATIZADO
+67/67 controles correctos.
+
+CAUSAS CORREGIDAS
+1. La trama gris diagonal provenía de un objeto WordArt del encabezado llamado "MUESTRA - VISTA PREVIA". Fue eliminado del machote operativo de rechazo.
+2. El espacio blanco excesivo provenía de colocar el bloque de cierre en una coordenada fija. El cierre ahora se posiciona después del contenido cuando existe espacio suficiente.
+3. La sobreposición con múltiples motivos provenía de acumular contenido en estructuras de altura insuficiente. Cada motivo se procesa como fila independiente.
+
+GARANTÍAS AUDITADAS
+- Rechazo en tamaño Carta 8.5 x 11 pulgadas / PDF 612 x 792 pt.
+- Sin marca de agua "MUESTRA - VISTA PREVIA".
+- Fecha y Trámite sin dos puntos superiores.
+- Un solo oficio multipágina para múltiples defectos.
+- Filas independientes por motivo.
+- Filas no divididas en Word.
+- Motivación y fundamento mantienen correspondencia numérica.
+- Bloque firma/recibo no se fragmenta por el motor adaptable.
+- Sin gran espacio blanco artificial antes del cierre.
+- Fecha de oficio automática al guardar Calificación.
+- Botones Siguiente existentes preservados.
+- Requisitos, catálogo y machote de aprobación protegidos.
+- Sin instaladores Windows.
+- Estructura GitHub Pages en raíz.
+
+PRUEBA DE ESTRÉS
+1 motivo  -> 1 página; cierre a 24 px del contenido.
+3 motivos -> 2 páginas; cierre a 40 px del contenido.
+6 motivos -> 2 páginas; cierre a 40 px del contenido.
+10 motivos -> 2 páginas; cierre a 24 px del contenido.
+15 motivos -> 3 páginas; cierre a 40 px del contenido.
+
+MACHOTES
+- APROBACIÓN: se mantiene idéntico al machote definitivo cargado.
+- RECHAZO: únicamente se corrigieron los elementos expresamente solicitados: eliminación de la marca de agua y de los dos puntos superiores Fecha/Trámite; el diseño institucional restante se conserva.

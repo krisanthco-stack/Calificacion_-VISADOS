@@ -1,0 +1,81 @@
+C-VISADOS 3.6.1 - AUDITORÍA FINAL DE MINUTAS ADAPTABLES
+
+RESULTADO FINAL: 71/71 controles correctos
+
+Machotes fuente: intactos byte por byte.
+PDF rechazo: Carta 612 x 792 pt.
+Motivos: filas independientes, no divididas, sin sobreescritura.
+Firma/recibo: no se dividen.
+Fecha oficio: automática al terminar Calificación.
+
+[OK] Sintaxis js/app.js
+[OK] Sintaxis js/exporters.js
+[OK] Sintaxis js/data.js
+[OK] Sintaxis js/pwa.js
+[OK] Sintaxis sw.js
+[OK] Versión app 3.6.1
+[OK] Versión exportadores 3.6.1
+[OK] Fecha automática al guardar Calificación
+[OK] Fecha automática al avanzar desde Calificación
+[OK] Un solo Siguiente en tramites - 1
+[OK] Un solo Siguiente en pre - 1
+[OK] Un solo Siguiente en inspection - 1
+[OK] Un solo Siguiente en calificacion - 1
+[OK] Un solo Siguiente en cierre - 1
+[OK] Un solo Siguiente en gestion - 1
+[OK] Paginador PDF multipágina
+[OK] Constructor PDF multipágina
+[OK] Rechazo ancho Carta 612 pt
+[OK] Rechazo alto Carta 792 pt
+[OK] Filas Word indivisibles
+[OK] Fila Word independiente por motivo
+[OK] Encabezado de tabla repetible
+[OK] Firma/recibo protegidos
+[OK] Vista previa comparte motor PDF
+[OK] Machote definitivo intacto MACHOTE_RECHAZO_DEFINITIVO.docx - c8276bdd3fa89a0ff248565a85d0f7e92f9c9fb1e3404d38e0fa4ad9e6dc6337 / c8276bdd3fa89a0ff248565a85d0f7e92f9c9fb1e3404d38e0fa4ad9e6dc6337
+[OK] Machote definitivo intacto MACHOTE_APROBACION_DEFINITIVO.docx - a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93 / a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93
+[OK] Sin regresión index.html
+[OK] Sin regresión css/app.css
+[OK] Sin regresión js/data.js
+[OK] Sin regresión data/requisitos.json
+[OK] Sin regresión data/catalogo_rechazos.json
+[OK] Sin regresión manifest.webmanifest
+[OK] Sin regresión .nojekyll
+[OK] Sin regresión assets/templates/APROBACION_BASE_2029.png
+[OK] Sin regresión assets/templates/BUSINESS_CARD_2029.png
+[OK] Sin regresión assets/templates/HEADER_2029.png
+[OK] Sin regresión assets/templates/OFICIAL_APROBACION_FONDO.png
+[OK] Sin regresión assets/templates/OFICIAL_RECHAZO_FONDO.png
+[OK] QA DOCX 6 motivos existe
+[OK] QA PDF 6 motivos existe
+[OK] QA PDF 1 motivo existe
+[OK] QA aprobación existe
+[OK] PDF 6 motivos páginas renderizadas - 3
+[OK] Word 6 motivos páginas renderizadas - 3
+[OK] PDF 1 motivo páginas renderizadas - 1
+[OK] PDF 6 motivos tres páginas - 3
+[OK] PDF rechazo página 1 Carta - 612.0x792.0
+[OK] PDF rechazo página 2 Carta - 612.0x792.0
+[OK] PDF rechazo página 3 Carta - 612.0x792.0
+[OK] PDF corto una página - 1
+[OK] PDF corto Carta - 612.0x792.0
+[OK] Sin *.bat
+[OK] Sin *.ps1
+[OK] Sin *.exe
+[OK] Sin *.msi
+[OK] Ruta GitHub index.html
+[OK] Ruta GitHub manifest.webmanifest
+[OK] Ruta GitHub sw.js
+[OK] Ruta GitHub .nojekyll
+[OK] Ruta GitHub css/app.css
+[OK] Ruta GitHub js/app.js
+[OK] Ruta GitHub js/exporters.js
+[OK] Ruta GitHub js/data.js
+[OK] Ruta GitHub assets/templates/MACHOTE_RECHAZO_DEFINITIVO.docx
+[OK] Ruta GitHub assets/templates/MACHOTE_APROBACION_DEFINITIVO.docx
+[OK] ZIP íntegro
+[OK] ZIP contiene index.html
+[OK] ZIP contiene js/app.js
+[OK] ZIP contiene js/exporters.js
+[OK] ZIP contiene assets/templates/MACHOTE_RECHAZO_DEFINITIVO.docx
+[OK] ZIP contiene AUDITORIA_FINAL_3.6.1.txt

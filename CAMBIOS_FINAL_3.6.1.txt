@@ -1,0 +1,13 @@
+C-VISADOS 3.6.1 - CORRECCIÓN DE MINUTAS ADAPTABLES
+
+- Machotes definitivos cargados permanecen intactos byte por byte.
+- Rechazo PDF usa tamaño Carta (612 x 792 pt), igual al machote definitivo de rechazo.
+- Aprobación conserva el tamaño de su machote definitivo.
+- Cada motivo de rechazo es una fila independiente en Word.
+- Filas de motivos no se dividen entre páginas.
+- Firma y recibo se protegen contra división entre páginas en Word.
+- PDF de rechazo pagina automáticamente cuando los motivos no caben.
+- Los motivos nunca se dibujan fuera de la tabla ni se sobreescriben.
+- La vista previa usa las mismas páginas rasterizadas que la descarga PDF.
+- La fecha del oficio se captura automáticamente al guardar/terminar Calificación.
+- No se agregan botones Siguiente duplicados.
