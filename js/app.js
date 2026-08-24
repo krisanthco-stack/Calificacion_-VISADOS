@@ -1,4 +1,4 @@
-const APP_VERSION='3.6.2';
+const APP_VERSION='3.6.3';
 const STORAGE='control_visados_2_5_expedientes';
 const {REQUISITOS,CATALOGO}=window.CV_DATA;
 const SEED=[];

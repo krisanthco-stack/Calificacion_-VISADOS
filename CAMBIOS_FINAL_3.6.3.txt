@@ -1,0 +1,10 @@
+C-VISADOS 3.6.3 — CAMBIOS
+
+1. Sustituidos íntegramente los machotes anteriores por los dos DOCX oficiales aportados para aprobación y rechazo.
+2. PDF de aprobación ajustado al nuevo machote A4, incluidos encabezado, fecha, trámite y tabla de presentación.
+3. PDF de rechazo ajustado al nuevo machote Carta de dos páginas, incluida la marca de agua y el recibo de calificación.
+4. Observaciones y tabla de motivación/fundamento ahora crecen de forma dinámica y continúan en páginas adicionales sin superponer renglones.
+5. Las filas de motivación/fundamento se mantienen enteras; no se parten entre páginas.
+6. El espacio dinámico añadido entre bloques se limita a 0.05 pulgadas.
+7. En Word, los datos variables se sustituyen sobre los nuevos machotes y, con muchos defectos, el bloque de cierre se desplaza a una página segura para evitar invadir el pie.
+8. Versión de aplicación y caché PWA actualizadas a 3.6.3.

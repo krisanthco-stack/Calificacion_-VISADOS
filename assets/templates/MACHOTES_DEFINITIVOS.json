@@ -1,14 +1,14 @@
 {
-  "version": "3.6.2",
+  "version": "3.6.3",
   "aprobacion": {
     "archivo": "MACHOTE_APROBACION_DEFINITIVO.docx",
-    "sha256": "a848a12ef33546f681f68b1e5055bb2a8906172d6787b6128200e06875adfc93",
-    "estado": "Sin cambios respecto del machote definitivo cargado."
+    "sha256": "0a598478b0a9585cd0a2327f0205a1ff8fabb098d86fcd7a8f76b2c989b9ac7a",
+    "estado": "Sustituido por el machote de aprobación cargado el 23 de agosto de 2026; se conserva como fuente oficial sin rediseño."
   },
   "rechazo": {
     "archivo": "MACHOTE_RECHAZO_DEFINITIVO.docx",
-    "sha256": "0fa02b9466f91e97d2ab30f29ba867b5cb3c651d8a111a750a47e2568d791de4",
-    "estado": "Corregido por instrucción expresa: removida la marca MUESTRA - VISTA PREVIA y eliminados los dos puntos de Fecha/Trámite. Diseño institucional restante conservado."
+    "sha256": "7be4b0a3e129826e103ca6f8e3f0f80142d10a82d1379786b364f71b00e07e82",
+    "estado": "Sustituido por el machote de rechazo cargado el 23 de agosto de 2026; se conserva la marca de agua MUESTRA - VISTA PREVIA y la segunda página de recibo."
   },
-  "nota": "C-VISADOS 3.6.2 usa salida adaptable tamaño Carta para rechazo; el contenido variable fluye sin superposición y el bloque de firma/recibo se mueve completo."
+  "nota": "C-VISADOS 3.6.3 genera aprobación en A4 y rechazo en Carta. En rechazo, observaciones y motivaciones se desplazan y paginan en bloques atómicos; el espacio dinámico entre bloques se limita a 0.05 pulgadas y se evita la superposición de texto."
 }

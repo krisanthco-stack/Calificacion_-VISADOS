@@ -1,0 +1,14 @@
+C-VISADOS 3.6.3 — PRUEBAS FUNCIONALES
+
+RESULTADOS
+- Motor de layout: separación dinámica máxima = 0.05 pulgadas.
+- Filas atómicas: una motivación/fundamento no se divide entre páginas.
+- Integración: report-layout.js carga antes de exporters.js y los nuevos fondos se precargan en la PWA.
+- PDF aprobación: 1 página A4, vista previa y PDF usan el mismo render.
+- PDF rechazo con 2 defectos: 2 páginas.
+- PDF rechazo con 10 defectos: 4 páginas.
+- PDF rechazo con 20 defectos: 5 páginas.
+- Word aprobación: 1 página.
+- Word rechazo con 2 defectos: 2 páginas.
+- Word rechazo con 10 defectos: 3 páginas, sin partición de firma ni invasión del pie.
+- Consola del navegador durante generación real: 0 errores.
