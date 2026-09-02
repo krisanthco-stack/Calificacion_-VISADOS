@@ -1,0 +1,21 @@
+C-VISADOS 3.6.4 — PRUEBAS FUNCIONALES
+
+Suite automatizada: 35 pruebas.
+
+Cobertura principal:
+- Migración de expedientes 3.6.3 al nuevo límite Trámites/Gestión.
+- Calificación pendiente no puede finalizarse.
+- Calificación rechazada pasa a Gestión y crea instantánea histórica de defectos.
+- Calificación aprobada pasa a Resoluciones/Gestión sin perder la etapa de cierre de resolución.
+- Subsanación parcial conserva estado RECHAZADO y la primera fecha de calificación.
+- Subsanación total cambia a APROBADO - FINALIZADO, actualiza la fecha del oficio de aprobación y conserva el rechazo histórico.
+- Archivo definitivo de rechazados sin subsanar.
+- Gestión excluye trámites no enviados desde Calificación y resultados PENDIENTE.
+- Cálculo del tiempo entre primera y última calificación/revisión.
+- Botón único de Calificación y panel de subsanación/histórico.
+- Integridad de machotes DOCX oficiales.
+- Paginación de rechazo, filas atómicas y espacio dinámico máximo de 0.05 pulgadas.
+- Integración PWA: workflow.js en caché y carga antes de app.js.
+- Importaciones duplicadas conservan la Calificación finalizada, el rechazo histórico y el progreso de subsanación.
+
+La verificación final debe ejecutarse nuevamente antes de empaquetar la entrega.

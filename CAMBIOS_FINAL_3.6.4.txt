@@ -1,0 +1,17 @@
+C-VISADOS 3.6.4 — CAMBIOS
+
+1. Trámites ahora muestra únicamente expedientes cuya Calificación todavía no ha sido finalizada y enviada a Resoluciones.
+2. Calificación usa un único botón: “Guardar, finalizar y enviar a Resoluciones”. No existe una ruta alternativa de “Guardar calificación” que envíe el trámite.
+3. Gestión muestra únicamente expedientes que ya finalizaron Calificación y pasaron a Resoluciones, con resultado APROBADO o RECHAZADO.
+4. El filtro Resultado de Gestión contiene solamente APROBADO y RECHAZADO; el filtro Estado se construye únicamente con estados presentes en Gestión.
+5. Los RECHAZADOS quedan como “RECHAZADO - PENDIENTE DE SUBSANACIÓN / CORRECCIÓN” hasta que se subsanen todos los defectos o se archiven definitivamente.
+6. Gestión incorpora revisión de subsanación por defecto, con registro de revisor y fecha.
+7. Cuando todos los defectos se marcan subsanados, el trámite cambia a “APROBADO - FINALIZADO”, conserva el rechazo histórico y queda habilitado para generar el PDF de aprobación.
+8. El PDF final de aprobación no incorpora el histórico del rechazo/subsanación; usa la fecha de la aprobación vigente.
+9. Se conservan primera calificación, última revisión, historial de calificaciones, rechazo original y revisiones de subsanación. Gestión muestra el tiempo transcurrido entre primera y última calificación/revisión.
+10. “ARCHIVADO” se usa únicamente para cerrar definitivamente un RECHAZADO sin subsanar; la acción de cierre de una resolución rechazada se denomina “Archivar sin subsanar”.
+11. El KPI “Finalizados” del módulo Trámites fue sustituido por “Pendientes de revisión”.
+12. Exportación Excel de Gestión se limita a trámites de Gestión e incluye primera calificación, última revisión y tiempo de proceso.
+13. Se mantienen sin modificación los machotes oficiales y el motor de paginación PDF/Word de la versión 3.6.3.
+14. Las importaciones duplicadas priorizan el expediente que ya pasó por Calificación y fusionan su histórico sin perder rechazo ni subsanación.
+15. Versión de aplicación y caché PWA actualizadas a 3.6.4.

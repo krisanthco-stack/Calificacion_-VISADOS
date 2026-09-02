@@ -134,10 +134,9 @@ window.addEventListener('beforeinstallprompt',function(e){
       <div class="card compact-card"><h3>Incumplimientos heredados</h3><div id="inheritedRejects" class="inherited-list small">Sin incumplimientos.</div></div>
       <div class="card compact-card"><h3>Detalles de rechazo agregados</h3><div id="manualRejectList" class="manual-list small">Ninguno.</div></div>
       <div class="card compact-card"><h3>Detalle de la causal</h3><div id="defDetail" class="detail" style="min-height:150px">Seleccione una causal para consultar su detalle y fundamento.</div></div>
-      <div class="card compact-card"><div class="compact-toolbar"><h3 style="margin:0">Motivos seleccionados</h3><span id="selectedCount" class="right pill green">0</span></div><div id="selectedDefs" class="small">Sin causales seleccionadas.</div><button class="btn primary" style="margin-top:8px" onclick="saveQualification()">Guardar calificación</button></div>
+      <div class="card compact-card"><div class="compact-toolbar"><h3 style="margin:0">Motivos seleccionados</h3><span id="selectedCount" class="right pill green">0</span></div><div id="selectedDefs" class="small">Sin causales seleccionadas.</div><button class="btn primary" style="margin-top:8px" onclick="saveQualification()">Guardar, finalizar y enviar a Resoluciones</button></div>
     </div>
   </div>
-  <div class="module-next"><button class="btn next-btn" onclick="nextModule('calificacion')">Siguiente →</button></div>
 </section>
 
 <section class="page" id="page-cierre">
@@ -170,7 +169,7 @@ window.addEventListener('beforeinstallprompt',function(e){
     <div class="gestion-filters">
       <div class="field"><label>Buscar</label><input id="gSearch" placeholder="Trámite, folio, presentación, solicitante..."></div>
       <div class="field"><label>Estado</label><select id="gEstado"><option value="">Todos</option></select></div>
-      <div class="field"><label>Resultado</label><select id="gResultado"><option value="">Todos</option><option>APROBADO</option><option>RECHAZADO</option><option>PENDIENTE</option></select></div>
+      <div class="field"><label>Resultado</label><select id="gResultado"><option value="">Todos</option><option>APROBADO</option><option>RECHAZADO</option></select></div>
       <div class="field"><label>Distrito</label><select id="gDistrito"><option value="">Todos</option></select></div>
       <button class="btn" onclick="clearGestionFilters()">Limpiar</button>
       <button class="btn primary" onclick="exportGestionExcel()">Descargar Excel (.xlsx)</button>
@@ -178,10 +177,15 @@ window.addEventListener('beforeinstallprompt',function(e){
     </div>
   </div>
   <div class="card compact-card"><div class="tablewrap"><table class="gestion-table"><thead><tr><th>Trámite</th><th>Fecha / alerta</th><th>Folio</th><th>Presentación</th><th>Solicitante</th><th>Distrito / lugar</th><th>Estado</th><th>Resultado</th><th>Observaciones</th></tr></thead><tbody id="gestionBody"></tbody></table></div></div>
-  <div class="module-next gestion-next"><span id="gestionSelected" class="small">Seleccione una fila para registrar la observación de Gestión.</span><button class="btn next-btn" onclick="nextModule('gestion')">Siguiente →</button></div>
+  <div class="card compact-card gestion-review-card" id="gestionReview">
+    <div class="compact-toolbar"><div><h3 style="margin:0">Subsanación / corrección e histórico</h3><div class="small">Disponible para trámites que ya finalizaron Calificación y pasaron a Resoluciones/Gestión.</div></div><span id="gestionSelected" class="right pill blue">Seleccione un trámite</span></div>
+    <div id="gestionReviewBody" class="gestion-review-body"><div class="empty">Seleccione un trámite aprobado o rechazado.</div></div>
+  </div>
+  <div class="module-next gestion-next"><span class="small">Gestión conserva el histórico desde la primera calificación hasta la última revisión.</span><button class="btn next-btn" onclick="nextModule('gestion')">Volver a Trámites →</button></div>
 </section>
 <script src="./js/pwa.js"></script>
 <script src="./js/data.js"></script>
+<script src="./js/workflow.js"></script>
 <script src="./js/app.js"></script>
 <script src="./js/report-layout.js"></script>
 <script src="./js/exporters.js"></script>

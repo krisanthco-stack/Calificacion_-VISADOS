@@ -1,4 +1,4 @@
-const VERSION='3.6.3';
+const VERSION='3.6.4';
 const CACHE='c-visados-'+VERSION;
 const CORE=[
   './',
@@ -6,6 +6,7 @@ const CORE=[
   './css/app.css',
   './js/pwa.js',
   './js/data.js',
+  './js/workflow.js',
   './js/app.js',
   './js/report-layout.js',
   './js/exporters.js',

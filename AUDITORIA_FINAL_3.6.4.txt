@@ -1,0 +1,24 @@
+C-VISADOS 3.6.4 — AUDITORÍA FINAL
+
+ALCANCE
+- Base: C_VISADOS_REPOSITORIO_FINAL_3.6.3_MACHOTES_FIELES.
+- Cambio: flujo Trámites → Calificación → Resoluciones/Gestión, subsanación, archivo e histórico.
+- Machotes PDF/Word: no modificados.
+
+REGLAS IMPLEMENTADAS
+- Trámites: solo expedientes antes de finalizar Calificación.
+- Gestión: solo expedientes enviados desde Calificación, con resultado APROBADO o RECHAZADO.
+- RECHAZADO: PENDIENTE DE SUBSANACIÓN / CORRECCIÓN hasta subsanar o archivar.
+- Subsanación completa: APROBADO - FINALIZADO.
+- Archivo: únicamente cierre definitivo de RECHAZADO sin subsanación.
+- Histórico de rechazo/subsanación: solo en sistema; no se imprime en aprobación.
+- Primera y última calificación/revisión: conservadas permanentemente.
+
+COMPATIBILIDAD
+- Los expedientes finalizados de versiones anteriores se migran a Gestión.
+- Un expediente anterior con fecha de calificación y resultado APROBADO/RECHAZADO se considera Calificación finalizada.
+- Los machotes definitivos conservan sus hashes protegidos por pruebas.
+- Las cargas duplicadas conservan el flujo más avanzado y fusionan el histórico de Calificación/subsanación.
+
+VERSIÓN RESULTANTE
+3.6.4
