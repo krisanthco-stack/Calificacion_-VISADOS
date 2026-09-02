@@ -41,7 +41,7 @@ test('finishing qualification sends the case to Resoluciones/Gestión and preser
 
 test('Gestión only renders finalized qualifications and implements subsanation/archive/pdf actions',()=>{
   const src=read('js/exporters.js');
-  assert.match(src,/CVISADOS_WORKFLOW\.isManagementCase/);
+  assert.match(src,/CVISADOS_WORKFLOW\.isGestionCase/);
   assert.match(src,/function renderGestionReview\(/);
   assert.match(src,/function saveSubsanationReview\(/);
   assert.match(src,/CVISADOS_WORKFLOW\.reviewSubsanation/);
@@ -50,11 +50,12 @@ test('Gestión only renders finalized qualifications and implements subsanation/
   assert.match(src,/function openGestionResolution\(/);
 });
 
-test('rejected resolution archives instead of generic finalization while approved finalizes normally',()=>{
-  const src=read('js/app.js');
-  assert.match(src,/CVISADOS_WORKFLOW\.archiveRejected/);
-  assert.match(src,/CVISADOS_WORKFLOW\.finalizeApprovedResolution/);
-  assert.match(src,/Archivar sin subsanar/);
+test('Resoluciones only concludes and Gestión owns definitive archive without subsanation',()=>{
+  const app=read('js/app.js'), gestion=read('js/exporters.js');
+  assert.match(app,/CVISADOS_WORKFLOW\.concludeResolution/);
+  assert.doesNotMatch((app.match(/function finalizeCase\(\)[\s\S]*?function reopenCase/)||[''])[0],/archiveRejected/);
+  assert.match(gestion,/CVISADOS_WORKFLOW\.archiveRejected/);
+  assert.match(gestion,/Archivar sin subsanar/);
 });
 
 test('Trámites KPI replaces Finalizados with Pendientes de revisión',()=>{
@@ -79,4 +80,18 @@ test('duplicate-case merge delegates workflow history preservation to the workfl
   const src=read('js/app.js');
   assert.match(src,/workflowScore[\s\S]*?calificacionFinalizada/);
   assert.match(src,/mergeCaseRecords[\s\S]*?CVISADOS_WORKFLOW\.mergeWorkflowHistory\(primary,other\)/);
+});
+
+test('Resoluciones and Gestión use separate view predicates',()=>{
+  const app=read('js/app.js'), exporters=read('js/exporters.js');
+  assert.match(app,/function renderCloseSelect\(\)[\s\S]*?isResolutionCase/);
+  assert.match(exporters,/function gestionCases\(\)\{return expedientes\.filter\(CVISADOS_WORKFLOW\.isGestionCase\)\}/);
+});
+
+test('concluding a resolution sends it to Gestión without archiving a rejected case',()=>{
+  const app=read('js/app.js');
+  const block=(app.match(/function finalizeCase\(\)[\s\S]*?function reopenCase/)||[''])[0];
+  assert.match(block,/CVISADOS_WORKFLOW\.concludeResolution/);
+  assert.doesNotMatch(block,/archiveRejected/);
+  assert.match(block,/Concluir resolución/);
 });

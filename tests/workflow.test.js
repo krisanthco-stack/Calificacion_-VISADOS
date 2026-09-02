@@ -48,6 +48,7 @@ test('approved qualification enters Resoluciones/Gestión but is not finalized u
 test('partial subsanation preserves rejection and first qualification time',()=>{
   const e={dictamen:'RECHAZADO',finalizado:false,report:{}};
   wf.finishQualification(e,{decision:'RECHAZADO',reasons:reasons(),now:'2026-08-20T10:00:00.000Z'});
+  wf.concludeResolution(e,{now:'2026-08-20T10:30:00.000Z'});
   const first=e.fechaPrimeraCalificacion;
   wf.reviewSubsanation(e,{resolvedIds:[e.subsanacion.defectos[0].id],reviewer:'Revisor',now:'2026-08-24T11:00:00.000Z'});
   assert.equal(e.dictamen,'RECHAZADO');
@@ -62,6 +63,7 @@ test('partial subsanation preserves rejection and first qualification time',()=>
 test('complete subsanation becomes approved + finalized and keeps rejection history',()=>{
   const e={dictamen:'RECHAZADO',finalizado:false,report:{fecha:'2026-08-20'}};
   wf.finishQualification(e,{decision:'RECHAZADO',reasons:reasons(),now:'2026-08-20T10:00:00.000Z'});
+  wf.concludeResolution(e,{now:'2026-08-20T10:30:00.000Z'});
   const ids=e.subsanacion.defectos.map(d=>d.id), rejection=JSON.stringify(e.rechazoHistorico);
   wf.reviewSubsanation(e,{resolvedIds:ids,reviewer:'Revisor',now:'2026-08-24T11:00:00.000Z'});
   assert.equal(e.dictamen,'APROBADO');
@@ -78,6 +80,7 @@ test('complete subsanation becomes approved + finalized and keeps rejection hist
 test('rejected case can be archived only as a definitive close without subsanation',()=>{
   const e={dictamen:'RECHAZADO',finalizado:false,report:{}};
   wf.finishQualification(e,{decision:'RECHAZADO',reasons:reasons(),now:'2026-08-20T10:00:00.000Z'});
+  wf.concludeResolution(e,{now:'2026-08-20T10:30:00.000Z'});
   wf.archiveRejected(e,{now:'2026-08-30T09:00:00.000Z'});
   assert.equal(e.dictamen,'RECHAZADO');
   assert.equal(e.finalizado,true);
@@ -117,4 +120,33 @@ test('duplicate imports keep the finalized qualification, rejection snapshot and
   assert.equal(active.calificacionHistorial.length,1);
   assert.equal(active.rechazoHistorico.length,1);
   assert.equal(active.subsanacion.defectos[0].subsanado,true);
+});
+
+test('finalized qualification is visible in Resoluciones until resolution is concluded',()=>{
+  const e={dictamen:'APROBADO',finalizado:false,report:{}};
+  wf.finishQualification(e,{decision:'APROBADO',now:'2026-09-02T08:00:00-06:00'});
+  assert.equal(wf.isResolutionCase(e),true);
+  assert.equal(wf.isGestionCase(e),false);
+  assert.notEqual(e.resolucionConcluida,true);
+});
+
+test('concluding an approved resolution moves it to Gestión and finalizes it',()=>{
+  const e={dictamen:'APROBADO',finalizado:false,report:{}};
+  wf.finishQualification(e,{decision:'APROBADO',now:'2026-09-02T08:00:00-06:00'});
+  wf.concludeResolution(e,{now:'2026-09-02T10:00:00-06:00'});
+  assert.equal(e.resolucionConcluida,true);
+  assert.equal(e.gestionFecha,'2026-09-02');
+  assert.equal(e.estado,'APROBADO - FINALIZADO');
+  assert.equal(wf.isResolutionCase(e),false);
+  assert.equal(wf.isGestionCase(e),true);
+});
+
+test('concluding a rejected resolution moves it to Gestión without archiving it',()=>{
+  const e={dictamen:'RECHAZADO',finalizado:false,report:{}};
+  wf.finishQualification(e,{decision:'RECHAZADO',reasons:reasons(),now:'2026-09-02T08:00:00-06:00'});
+  wf.concludeResolution(e,{now:'2026-09-02T10:00:00-06:00'});
+  assert.equal(e.resolucionConcluida,true);
+  assert.equal(e.finalizado,false);
+  assert.equal(e.estado,'RECHAZADO - PENDIENTE DE SUBSANACIÓN / CORRECCIÓN');
+  assert.equal(wf.isGestionCase(e),true);
 });

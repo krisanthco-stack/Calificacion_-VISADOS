@@ -1,0 +1,23 @@
+C-VISADOS 3.7.2 — PRUEBAS FUNCIONALES
+
+Comando principal:
+node --test tests/*.test.js
+
+Resultado:
+82 pruebas
+82 correctas
+0 fallos
+0 omitidas
+
+Verificaciones adicionales:
+- node --check js/*.js server/*.cjs sw.js: correcto.
+- IDs HTML duplicados: 0.
+- Comparación SHA-256 assets/templates contra 3.7.1: 10 iguales, 0 modificados.
+
+Casos nuevos:
+1. PDF/OCR solo autocompleta Solicitante, N.° de trámite y Presentación.
+2. El lector web mantiene funcionalidad y no sobrescribe campos ya poblados.
+3. El folio no puede interpretarse como trámite mediante Highlight to Fill.
+4. Visor redimensionable con menú de asignación rápida.
+5. Carga de PDF/imagen dispara lectura automáticamente.
+6. Fecha de aprobación y rechazo utiliza ajuste automático de fuente para no salir del margen reservado.

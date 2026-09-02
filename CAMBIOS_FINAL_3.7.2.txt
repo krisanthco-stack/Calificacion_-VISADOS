@@ -1,0 +1,19 @@
+C-VISADOS 3.7.2 — LECTOR PDF/OCR + HIGHLIGHT TO FILL
+
+CAMBIOS IMPLEMENTADOS
+- Visor/lector de expediente redimensionable con límites mínimos y máximos.
+- PDF e imágenes continúan ejecutando la lectura automáticamente al cargarse.
+- PDF/OCR autocompleta únicamente Solicitante, N.° de trámite y Presentación.
+- El folio nunca se utiliza ni se deriva como número de trámite. Si no se reconoce un trámite válido, permanece en blanco.
+- El lector web Metro conserva su capacidad actual; para campos compartidos se respeta la regla de primer valor válido: un lector nunca sobrescribe datos ya existentes.
+- Se agregó selección manual de texto (Highlight to Fill) desde el texto extraído del visor, con asignación a Solicitante, N.° de trámite o Presentación.
+- La selección manual limpia saltos de línea y espacios. El N.° de trámite seleccionado se valida y no puede duplicar el de otro expediente.
+- Los PDF/imágenes locales se muestran en el visor mediante una URL temporal y la memoria se libera al cerrar/cambiar de fuente.
+- Corrección de impresión: Fecha y Trámite en aprobación/rechazo reducen el tamaño automáticamente para mantenerse dentro del área reservada sin modificar el machote.
+- Versión de PWA, cache, exportadores y backend actualizada a 3.7.2.
+
+NO SE MODIFICÓ
+- Máquina de estados Trámites → Calificación → Resoluciones → Gestión.
+- Subsanación, archivado e históricos.
+- Normalización y seguridad de enlaces Metro.
+- Archivos oficiales de machotes DOCX/PNG.

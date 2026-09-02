@@ -40,8 +40,8 @@ test('approval renderer clears complete variable regions without erasing table b
 
 test('approval renderer redraws complete date and trámite labels to avoid leftover glyphs',()=>{
   const src=fs.readFileSync('js/exporters.js','utf8');
-  assert.match(src,/drawText\(x,'Fecha: '\+dateEs\(/);
-  assert.match(src,/drawText\(x,'Trámite: '\+\(e\.tramite\|\|''\)/);
+  assert.match(src,/drawTextFit\(x,'Fecha: '\+dateEs\(/);
+  assert.match(src,/drawTextFit\(x,'Trámite: '\+\(e\.tramite\|\|''\)/);
 });
 
 test('approval office-number mask stays inside the blue header',()=>{
@@ -65,4 +65,11 @@ test('Word rejection starts the closing block on a new page when there are many 
   const src=fs.readFileSync('js/exporters.js','utf8');
   assert.match(src,/function pageBreakBefore\(/);
   assert.match(src,/protectClosingBlocks\(doc,defs\.length>=7\|\|obs\.length>=9\)/);
+});
+
+test('approval and rejection dates shrink to their reserved boxes instead of crossing margins',()=>{
+  const src=fs.readFileSync('js/exporters.js','utf8');
+  assert.match(src,/function drawTextFit\(/);
+  assert.match(src,/drawTextFit\(x,'Fecha: '\+dateEs\(/);
+  assert.match(src,/drawTextFit\(ctx,dateEs\(/);
 });

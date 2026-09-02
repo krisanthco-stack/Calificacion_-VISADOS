@@ -41,6 +41,13 @@
     }
     if(!e.fechaPrimeraCalificacion&&e.fechaCalificacion)e.fechaPrimeraCalificacion=e.fechaCalificacion;
     if(!e.fechaUltimaCalificacion&&e.fechaPrimeraCalificacion)e.fechaUltimaCalificacion=e.fechaPrimeraCalificacion;
+    if(typeof e.resolucionConcluida!=='boolean'&&e.calificacionFinalizada&&MANAGED_RESULTS.has(e.dictamen)){
+      e.resolucionConcluida=!!e.finalizado;
+    }
+    if(e.resolucionConcluida===true){
+      if(!e.fechaResolucionConcluida&&e.fechaFin)e.fechaResolucionConcluida=String(e.fechaFin).length===10?`${e.fechaFin}T12:00:00.000Z`:e.fechaFin;
+      if(!e.gestionFecha)e.gestionFecha=isoDate(e.fechaResolucionConcluida||e.fechaFin||'');
+    }
 
     if(e.calificacionFinalizada&&e.dictamen==='RECHAZADO'&&!e.rechazoHistorico.length){
       const at=e.fechaPrimeraCalificacion||e.fechaCalificacion||new Date().toISOString();
@@ -61,6 +68,14 @@
 
   function isManagementCase(e){
     return !!e?.calificacionFinalizada&&MANAGED_RESULTS.has(e?.dictamen);
+  }
+
+  function isResolutionCase(e){
+    return isManagementCase(e)&&e?.resolucionConcluida!==true;
+  }
+
+  function isGestionCase(e){
+    return isManagementCase(e)&&e?.resolucionConcluida===true;
   }
 
   function isTramitesCase(e){
@@ -89,6 +104,9 @@
     e.calificacionFinalizada=true;
     e.dictamen=decision;
     e.finalizado=false;
+    e.resolucionConcluida=false;
+    e.fechaResolucionConcluida=null;
+    e.gestionFecha='';
     e.archivadoEn=null;
     const defects=(reasons||[]).map(normalizeReason);
     e.calificacionHistorial.push(historyEntry(e,{tipo:first?'CALIFICACIÓN INICIAL':'CALIFICACIÓN',resultado:decision,now:stamp,reasons:defects}));
@@ -104,9 +122,29 @@
     return e;
   }
 
+  function concludeResolution(e,{now=new Date().toISOString()}={}){
+    ensureWorkflow(e);
+    if(!isResolutionCase(e))throw new Error('Solo los trámites en Resoluciones pueden concluirse y enviarse a Gestión.');
+    const stamp=String(now);
+    e.resolucionConcluida=true;
+    e.fechaResolucionConcluida=stamp;
+    e.gestionFecha=isoDate(stamp);
+    if(e.dictamen==='APROBADO'){
+      e.finalizado=true;
+      e.estado='APROBADO - FINALIZADO';
+      e.fechaFin=isoDate(stamp);
+    }else{
+      e.finalizado=false;
+      e.estado='RECHAZADO - PENDIENTE DE SUBSANACIÓN / CORRECCIÓN';
+      delete e.fechaFin;
+      e.archivadoEn=null;
+    }
+    return e;
+  }
+
   function reviewSubsanation(e,{resolvedIds=[],reviewer='',now=new Date().toISOString()}={}){
     ensureWorkflow(e);
-    if(e.dictamen!=='RECHAZADO'||!e.calificacionFinalizada)throw new Error('Solo los trámites rechazados en Gestión pueden revisarse por subsanación.');
+    if(e.dictamen!=='RECHAZADO'||!isGestionCase(e))throw new Error('Solo los trámites rechazados cuya resolución ya concluyó en Gestión pueden revisarse por subsanación.');
     if(e.finalizado&&e.estado==='RECHAZADO - ARCHIVADO')throw new Error('El trámite está archivado. Reábralo antes de revisar subsanaciones.');
     const stamp=String(now),selected=new Set((resolvedIds||[]).map(String));
     e.subsanacion.defectos=e.subsanacion.defectos.map(d=>{
@@ -137,7 +175,7 @@
 
   function archiveRejected(e,{now=new Date().toISOString()}={}){
     ensureWorkflow(e);
-    if(e.dictamen!=='RECHAZADO'||!e.calificacionFinalizada)throw new Error('Solo un trámite rechazado puede archivarse por falta de subsanación.');
+    if(e.dictamen!=='RECHAZADO'||!isGestionCase(e))throw new Error('Solo un trámite rechazado en Gestión puede archivarse por falta de subsanación.');
     const stamp=String(now);
     e.finalizado=true;
     e.estado='RECHAZADO - ARCHIVADO';
@@ -151,6 +189,7 @@
     ensureWorkflow(e);
     if(!e.calificacionFinalizada)return e;
     e.finalizado=false;
+    e.resolucionConcluida=false;
     delete e.fechaFin;
     if(e.dictamen==='RECHAZADO'){
       e.archivadoEn=null;
@@ -162,11 +201,8 @@
   function finalizeApprovedResolution(e,{now=new Date().toISOString()}={}){
     ensureWorkflow(e);
     if(e.dictamen!=='APROBADO'||!e.calificacionFinalizada)throw new Error('Solo un trámite aprobado puede finalizar la resolución.');
-    const stamp=String(now);
-    e.finalizado=true;
-    e.estado='APROBADO - FINALIZADO';
-    e.fechaFin=isoDate(stamp);
-    return e;
+    if(e.resolucionConcluida===true)return e;
+    return concludeResolution(e,{now});
   }
 
   function qualificationElapsed(e){
@@ -219,11 +255,14 @@
       primary.dictamen=source.dictamen;primary.finalizado=!!source.finalizado;primary.estado=source.estado;
       if(source.fechaFin)primary.fechaFin=source.fechaFin;else delete primary.fechaFin;
       if(source.archivadoEn)primary.archivadoEn=source.archivadoEn;else if(primary.dictamen!=='RECHAZADO'||!primary.finalizado)delete primary.archivadoEn;
+      if(typeof source.resolucionConcluida==='boolean')primary.resolucionConcluida=source.resolucionConcluida;
+      if(source.fechaResolucionConcluida)primary.fechaResolucionConcluida=source.fechaResolucionConcluida;
+      if(source.gestionFecha)primary.gestionFecha=source.gestionFecha;
       if(!primary.calificacionEncargado&&source.calificacionEncargado)primary.calificacionEncargado=source.calificacionEncargado;
     }
     if(primary.fechaPrimeraCalificacion&&!primary.fechaCalificacion)primary.fechaCalificacion=primary.fechaPrimeraCalificacion;
     return primary;
   }
 
-  return {ensureWorkflow,isManagementCase,isTramitesCase,finishQualification,reviewSubsanation,archiveRejected,reopenResolution,finalizeApprovedResolution,qualificationElapsed,mergeWorkflowHistory};
+  return {ensureWorkflow,isManagementCase,isResolutionCase,isGestionCase,isTramitesCase,finishQualification,concludeResolution,reviewSubsanation,archiveRejected,reopenResolution,finalizeApprovedResolution,qualificationElapsed,mergeWorkflowHistory};
 });
